@@ -1,10 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.2"
-    id("io.spring.dependency-management") version "1.0.12.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
+    id("org.springframework.boot") version PluginVersions.SPRING_BOOT_FRAMEWORK_VERSION
+    id("io.spring.dependency-management") version PluginVersions.SPRING_DEPENDENCY_MANAGEMENT_VERSION
+    kotlin("jvm") version PluginVersions.JVM_VERSION
+    kotlin("plugin.spring") version PluginVersions.PLUGIN_SPRING_VERSION
+    kotlin("plugin.jpa") version PluginVersions.PLUGIN_JPA_VERSION
 }
 
 group = "com.cheajib"
@@ -22,16 +23,16 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
+    implementation(Dependency.R2DBC)
+    implementation(Dependency.VALIDATION)
+    implementation(Dependency.WEB)
+    implementation(Dependency.JACKSON)
+    implementation(Dependency.Reactor.KOTLIN_EXTENSIONS)
+    implementation(Dependency.REFLECT)
+    implementation(Dependency.STDLIB_JDK8)
+    implementation(Dependency.Reactor.KOTLINX_COROUTINES)
+    testImplementation(Dependency.Reactor.TEST)
+    testImplementation(Dependency.TEST)
 }
 
 tasks.withType<KotlinCompile> {
