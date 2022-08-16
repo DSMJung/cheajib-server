@@ -32,6 +32,10 @@ dependencies {
     implementation(Dependency.REFLECT)
     implementation(Dependency.STDLIB_JDK8)
     implementation(Dependency.Reactor.KOTLINX_COROUTINES)
+    implementation(Dependency.SPRING_SECURITY)
+    implementation(Dependency.REDIS)
+    implementation(Dependency.JWT)
+    implementation(Dependency.CLOUD_AWS)
     testImplementation(Dependency.Reactor.TEST)
     testImplementation(Dependency.TEST)
 }

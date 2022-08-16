@@ -29,4 +29,16 @@ object Dependency {
         const val TEST = "io.projectreactor:reactor-test"
         const val KOTLINX_COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor"
     }
+
+    // security
+    const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
+
+    // redis
+    const val REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
+
+    // jwt
+    const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersion.JWT}"
+
+    // s3
+    const val CLOUD_AWS = "org.springframework.cloud:spring-cloud-starter-aws:${DependencyVersion.CLOUD_AWS}"
 }
