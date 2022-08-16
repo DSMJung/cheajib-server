@@ -11,6 +11,9 @@ object Dependency {
     // jackson
     const val JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
 
+    // jpa
+    const val JPA = "org.springframework.boot:spring-boot-starter-data-jpa"
+
     // reflect
     const val REFLECT = "org.jetbrains.kotlin:kotlin-reflect"
 

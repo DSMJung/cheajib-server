@@ -27,6 +27,7 @@ dependencies {
     implementation(Dependency.VALIDATION)
     implementation(Dependency.WEB)
     implementation(Dependency.JACKSON)
+    implementation(Dependency.JPA)
     implementation(Dependency.Reactor.KOTLIN_EXTENSIONS)
     implementation(Dependency.REFLECT)
     implementation(Dependency.STDLIB_JDK8)
