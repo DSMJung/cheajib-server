@@ -36,6 +36,7 @@ dependencies {
     implementation(Dependency.REDIS)
     implementation(Dependency.JWT)
     implementation(Dependency.CLOUD_AWS)
+    implementation(Dependency.OAUTH2)
     testImplementation(Dependency.Reactor.TEST)
     testImplementation(Dependency.TEST)
 }

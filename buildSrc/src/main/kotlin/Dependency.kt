@@ -41,4 +41,6 @@ object Dependency {
 
     // s3
     const val CLOUD_AWS = "org.springframework.cloud:spring-cloud-starter-aws:${DependencyVersion.CLOUD_AWS}"
+
+    const val   OAUTH2 = "org.springframework.boot:spring-boot-starter-oauth2-client"
 }
