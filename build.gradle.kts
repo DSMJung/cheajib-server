@@ -34,7 +34,6 @@ dependencies {
     implementation(Dependency.Reactor.KOTLINX_COROUTINES)
     implementation(Dependency.SPRING_SECURITY)
     implementation(Dependency.REDIS)
-    implementation(Dependency.JWT)
     implementation(Dependency.CLOUD_AWS)
     implementation(Dependency.OAUTH2)
     testImplementation(Dependency.Reactor.TEST)

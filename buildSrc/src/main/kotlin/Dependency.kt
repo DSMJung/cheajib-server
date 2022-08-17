@@ -36,9 +36,6 @@ object Dependency {
     // redis
     const val REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
 
-    // jwt
-    const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersion.JWT}"
-
     // s3
     const val CLOUD_AWS = "org.springframework.cloud:spring-cloud-starter-aws:${DependencyVersion.CLOUD_AWS}"
 
