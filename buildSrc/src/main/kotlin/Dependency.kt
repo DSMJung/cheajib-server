@@ -34,7 +34,7 @@ object Dependency {
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
 
     // redis
-    const val REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
+    const val REDIS_REACTIVE = "org.springframework.boot:spring-boot-starter-data-redis-reactive"
 
     // s3
     const val CLOUD_AWS = "org.springframework.cloud:spring-cloud-starter-aws:${DependencyVersion.CLOUD_AWS}"

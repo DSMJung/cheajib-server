@@ -33,7 +33,7 @@ dependencies {
     implementation(Dependency.STDLIB_JDK8)
     implementation(Dependency.Reactor.KOTLINX_COROUTINES)
     implementation(Dependency.SPRING_SECURITY)
-    implementation(Dependency.REDIS)
+    implementation(Dependency.REDIS_REACTIVE)
     implementation(Dependency.CLOUD_AWS)
     implementation(Dependency.OAUTH2)
     testImplementation(Dependency.Reactor.TEST)
