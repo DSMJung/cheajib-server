@@ -22,6 +22,12 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom(Dependency.CLOUD_AWS_DEPENDENCIES)
+    }
+}
+
 dependencies {
     implementation(Dependency.R2DBC)
     implementation(Dependency.VALIDATION)
