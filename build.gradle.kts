@@ -22,6 +22,12 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom(Dependency.CLOUD_AWS_DEPENDENCIES)
+    }
+}
+
 dependencies {
     implementation(Dependency.R2DBC)
     implementation(Dependency.VALIDATION)
@@ -32,6 +38,10 @@ dependencies {
     implementation(Dependency.REFLECT)
     implementation(Dependency.STDLIB_JDK8)
     implementation(Dependency.Reactor.KOTLINX_COROUTINES)
+    implementation(Dependency.SPRING_SECURITY)
+    implementation(Dependency.REDIS_REACTIVE)
+    implementation(Dependency.CLOUD_AWS)
+    implementation(Dependency.OAUTH2)
     testImplementation(Dependency.Reactor.TEST)
     testImplementation(Dependency.TEST)
 }
