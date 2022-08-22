@@ -1,4 +1,4 @@
-name: CI
+name: cheajib-server CI
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
       - name: Gradle Test
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: test
+          arguments: build
