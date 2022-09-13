@@ -1,6 +1,6 @@
 package com.cheajib.cheajibserver.global.error
 
-import com.cheajib.cheajibserver.global.error.propertys.ErrorProperty
+import com.cheajib.cheajibserver.global.error.properties.ErrorProperty
 
 open class GlobalException(
     private val errorProperty: ErrorProperty

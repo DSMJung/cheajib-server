@@ -1,4 +1,4 @@
-package com.cheajib.cheajibserver.global.error.propertys
+package com.cheajib.cheajibserver.global.error.properties
 
 enum class GlobalErrorCode(
     override val errorStatus: Int,
