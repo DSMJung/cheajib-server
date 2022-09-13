@@ -93,6 +93,11 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
     jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+}
+
 tasks.getByName<Jar>("jar") {
     enabled = false
 }
