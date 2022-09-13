@@ -18,7 +18,7 @@ class Menu(
     override val id: UUID,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant-id", nullable = false)
+    @JoinColumn(name = "restaurant_id", nullable = false)
     val restaurant: Restaurant,
 
     @field:NotNull
