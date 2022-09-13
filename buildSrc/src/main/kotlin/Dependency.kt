@@ -23,6 +23,9 @@ object Dependency {
     // test
     const val TEST = "org.springframework.boot:spring-boot-starter-test"
 
+    // ktlint
+    const val KTLINT = "com.pinterest:ktlint:${DependencyVersion.KTLINT_VERSION}"
+
     // reactor
     object Reactor {
         const val KOTLIN_EXTENSIONS = "io.projectreactor.kotlin:reactor-kotlin-extensions"
