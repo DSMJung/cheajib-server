@@ -29,7 +29,6 @@ class Menu(
 
     menuImageUrl: String
 
-
 ) : BaseUUIDEntity() {
 
     @field:NotNull
@@ -40,5 +39,4 @@ class Menu(
     @field:NotNull
     var menuImageUrl = menuImageUrl
         protected set
-
 }
