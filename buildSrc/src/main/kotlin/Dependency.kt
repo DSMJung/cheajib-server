@@ -2,7 +2,7 @@ object Dependency {
     // r2dbc
     const val R2DBC = "org.springframework.boot:spring-boot-starter-data-r2dbc"
 
-    //validation
+    // validation
     const val VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
 
     // web
