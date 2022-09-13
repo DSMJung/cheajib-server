@@ -6,8 +6,19 @@ jobs:
   ktlint:
     name: Check Code Quality
     runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          os: [ ubuntu-latest ]
+          java-version: [ 17 ]
 
     steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'zulu'
+
       - name: Clone repo
         uses: actions/checkout@master
         with:
