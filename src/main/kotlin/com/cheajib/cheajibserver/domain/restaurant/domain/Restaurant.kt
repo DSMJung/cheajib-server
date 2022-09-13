@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
 import java.util.UUID
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -28,6 +29,7 @@ class Restaurant(
 
 ) : BaseTimeEntity() {
 
+    @Column(nullable = false)
     @ColumnDefault("'0'")
     var isVerify = isVerify
         protected set
