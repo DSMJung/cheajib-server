@@ -6,10 +6,10 @@ jobs:
   ktlint:
     name: Check Code Quality
     runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          os: [ ubuntu-latest ]
-          java-version: [ 17 ]
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java-version: [ 17 ]
 
     steps:
       - uses: actions/checkout@v2
