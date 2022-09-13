@@ -54,7 +54,7 @@ class Owner(
 
     @field:NotNull
     @field:Length(max = 255)
-    val id_card: String,
+    val idCard: String,
 
     @field:NotNull
     @field:Length(max = 255)
