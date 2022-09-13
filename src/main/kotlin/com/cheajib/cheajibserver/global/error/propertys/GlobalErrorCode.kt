@@ -10,5 +10,5 @@ enum class GlobalErrorCode(
     DATA_INTEGRITY_VIOLATION(400, "DataIntegrity Violation"),
     ILLEGAL_ARGUMENT(400, "Illegal Argument"),
 
-    INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error")
 }

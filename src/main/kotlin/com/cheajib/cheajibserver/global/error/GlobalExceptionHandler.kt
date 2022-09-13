@@ -1,9 +1,9 @@
 package com.cheajib.cheajibserver.global.error
 
-import com.cheajib.cheajibserver.global.error.propertys.ErrorResponse
 import com.cheajib.cheajibserver.global.error.exception.CustomDataIntegrityViolationException
 import com.cheajib.cheajibserver.global.error.exception.CustomIllegalArgumentException
 import com.cheajib.cheajibserver.global.error.exception.CustomMethodArgumentNotValidException
+import com.cheajib.cheajibserver.global.error.propertys.ErrorResponse
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
