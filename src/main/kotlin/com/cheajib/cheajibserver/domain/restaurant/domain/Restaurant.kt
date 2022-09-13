@@ -4,6 +4,7 @@ import com.cheajib.cheajibserver.global.entity.BaseTimeEntity
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
+import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotNull
 @DynamicInsert
 @Table(name = "tbl_restaurant")
 class Restaurant(
+
+    override val id: UUID,
 
     @field:NotNull
     @field:Length(max = 100)
@@ -25,7 +28,7 @@ class Restaurant(
 
 ) : BaseTimeEntity() {
 
-    @ColumnDefault("0")
+    @ColumnDefault("'0'")
     var isVerify = isVerify
         protected set
 }
