@@ -1,7 +1,7 @@
 package com.cheajib.cheajibserver.global.error
 
 import com.cheajib.cheajibserver.global.error.exception.InternalServerError
-import com.cheajib.cheajibserver.global.error.propertys.ErrorResponse
+import com.cheajib.cheajibserver.global.error.properties.ErrorResponse
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.MediaType
 import org.springframework.web.filter.OncePerRequestFilter
