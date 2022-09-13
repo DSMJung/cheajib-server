@@ -1,4 +1,4 @@
-name: Klint Ci
+name: Ktlint Ci
 
 on: [pull_request]
 
