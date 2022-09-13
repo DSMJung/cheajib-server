@@ -5,6 +5,7 @@ import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.validator.constraints.Length
 import java.time.LocalDateTime
+import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
@@ -15,6 +16,8 @@ import javax.validation.constraints.NotNull
 @Entity
 @Table(name = "tbl_review")
 class Review(
+
+    override val id: UUID,
 
     reviewPoint: Int,
 
