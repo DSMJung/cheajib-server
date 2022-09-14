@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
+import java.util.UUID
 import javax.validation.Valid
 
 @RequestMapping("/menu")
@@ -20,8 +20,8 @@ class MenuController(
     private val registerMenuService: RegisterMenuService,
     private val deleteMenuService: DeleteMenuService
 ) {
-    @PostMapping("/{restaurant-id}")
     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/{restaurant-id}")
     fun registerMenu(
         @PathVariable("restaurant-id")
         restaurantId: UUID,
@@ -32,8 +32,8 @@ class MenuController(
         registerMenuService.execute(restaurantId, request)
     }
 
-    @DeleteMapping("/{menu-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{menu-id}")
     fun deleteMenu(
         @PathVariable("menu-id")
         menuId: UUID
