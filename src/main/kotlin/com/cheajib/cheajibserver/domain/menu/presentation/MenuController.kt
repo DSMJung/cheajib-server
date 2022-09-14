@@ -20,9 +20,11 @@ class MenuController(
     @PostMapping("/{restaurant-id}")
     @ResponseStatus(HttpStatus.CREATED)
     fun registerMenu(
-        @PathVariable("restaurant-id") restaurantId: UUID,
+        @PathVariable("restaurant-id")
+        restaurantId: UUID,
         @Valid
-        @RequestBody request: RegisterMenuRequest
+        @RequestBody
+        request: RegisterMenuRequest
     ) {
         registerMenuService.execute(restaurantId, request)
     }
