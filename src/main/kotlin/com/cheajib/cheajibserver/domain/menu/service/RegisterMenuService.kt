@@ -16,7 +16,7 @@ class RegisterMenuService(
         val restaurant = restaurantFacade.findRestaurantById(restaurantId)
 
         val menu = Menu(
-            id = UUID(0,0),
+            id = UUID(0, 0),
             name = request.name,
             price = request.price,
             description = request.description,

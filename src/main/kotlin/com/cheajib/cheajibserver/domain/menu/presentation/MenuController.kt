@@ -21,7 +21,8 @@ class MenuController(
     @ResponseStatus(HttpStatus.CREATED)
     fun registerMenu(
         @PathVariable("restaurant-id") restaurantId: UUID,
-        @Valid @RequestBody request: RegisterMenuRequest
+        @Valid
+        @RequestBody request: RegisterMenuRequest
     ) {
         registerMenuService.execute(restaurantId, request)
     }
