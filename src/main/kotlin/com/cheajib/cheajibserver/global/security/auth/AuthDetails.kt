@@ -21,5 +21,4 @@ class AuthDetails(
     override fun isCredentialsNonExpired(): Boolean = true
 
     override fun isEnabled(): Boolean = true
-
 }

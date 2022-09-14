@@ -7,6 +7,5 @@ enum class UserErrorProperty(
     override val errorStatus: Int
     ) : ErrorProperty {
 
-    USER_NOT_FOUND( "User Not Found",404)
-
+    USER_NOT_FOUND("User Not Found", 404)
 }
