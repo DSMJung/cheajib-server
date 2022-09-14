@@ -17,22 +17,26 @@ class Menu(
 
     override val id: UUID,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    val restaurant: Restaurant,
-
     @field:NotNull
     @Length(max = 74)
     val name: String,
 
-    price: Int,
+    price: String,
 
-    menuImageUrl: String
+    @field:NotNull
+    @Length(max = 1000)
+    val description: String,
+
+    menuImageUrl: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    val restaurant: Restaurant
 
 ) : BaseUUIDEntity() {
 
     @field:NotNull
-    @Length(max = 1000000)
+    @Length(max = 500001)
     var price = price
         protected set
 
