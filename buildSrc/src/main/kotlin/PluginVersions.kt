@@ -4,4 +4,5 @@ object PluginVersions {
     const val JVM_VERSION = "1.6.21"
     const val PLUGIN_SPRING_VERSION = "1.6.21"
     const val PLUGIN_JPA_VERSION = "1.6.21"
+    const val KAPT_VERSION = "1.6.10"
 }

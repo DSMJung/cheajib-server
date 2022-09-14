@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version PluginVersions.JVM_VERSION
     kotlin("plugin.spring") version PluginVersions.PLUGIN_SPRING_VERSION
     kotlin("plugin.jpa") version PluginVersions.PLUGIN_JPA_VERSION
+    kotlin("kapt") version PluginVersions.KAPT_VERSION
 }
 
 group = "com.cheajib"
@@ -42,8 +43,15 @@ dependencies {
     implementation(Dependency.REDIS_REACTIVE)
     implementation(Dependency.CLOUD_AWS)
     implementation(Dependency.OAUTH2)
+    kapt(Dependency.QUERYDSL_PROCESSOR)
+    implementation(Dependency.QUERYDSL)
     testImplementation(Dependency.Reactor.TEST)
     testImplementation(Dependency.TEST)
+
+}
+
+kotlin.sourceSets.main {
+    kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }
 
 tasks.withType<KotlinCompile> {
