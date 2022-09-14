@@ -17,7 +17,7 @@ class Comment(
     override val id: UUID,
 
     @field:NotNull
-    @field:Length
+    @field:Length(max = 500)
     val content: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
