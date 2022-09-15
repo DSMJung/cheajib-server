@@ -37,7 +37,7 @@ dependencies {
     implementation(Dependency.REFLECT)
     implementation(Dependency.STDLIB_JDK8)
     implementation(Dependency.SPRING_SECURITY)
-    implementation(Dependency.REDIS_REACTIVE)
+    implementation(Dependency.REDIS)
     implementation(Dependency.CLOUD_AWS)
     kapt(Dependency.QUERYDSL_PROCESSOR)
     implementation(Dependency.QUERYDSL)
