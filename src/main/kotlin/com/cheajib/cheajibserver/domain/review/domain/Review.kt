@@ -28,9 +28,6 @@ class Review(
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id", nullable = false)
-    val menu: Menu
 
 ) : BaseUUIDEntity() {
 
