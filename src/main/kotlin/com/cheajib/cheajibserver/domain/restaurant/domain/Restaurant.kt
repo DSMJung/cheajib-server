@@ -25,7 +25,7 @@ class Restaurant(
     @field:Length(max = 94)
     val address: String,
 
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    @Column(columnDefinition = "TINYINT(1)")
     @ColumnDefault("'0'")
     val isVerify: Boolean
 

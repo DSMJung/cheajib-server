@@ -18,13 +18,13 @@ class Menu(
     override val id: UUID,
 
     @field:NotNull
-    @Length(max = 74)
+    @field:Length(max = 74)
     val name: String,
 
     price: String,
 
     @field:NotNull
-    @Length(max = 1000)
+    @field:Length(max = 1000)
     val description: String,
 
     menuImageUrl: String,
