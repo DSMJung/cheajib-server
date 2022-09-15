@@ -13,8 +13,8 @@ class DeleteMenuService(
 ) {
 
     @Transactional
-    fun execute(menuId: UUID) {
-        val menu = menuFacade.getMenuById(menuId)
+    fun execute(menuId: UUID) { 
+        val menu = menuFacade.findMenuById(menuId)
         menuRepository.delete(menu)
     }
 }
