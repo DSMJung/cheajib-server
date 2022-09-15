@@ -45,7 +45,7 @@ object Dependency {
     // oauth2
     const val OAUTH2 = "org.springframework.boot:spring-boot-starter-oauth2-client"
 
-    //queryDSL
+    // queryDSL
     const val QUERYDSL = "com.querydsl:querydsl-jpa:${DependencyVersion.QUERYDSL}"
     const val QUERYDSL_PROCESSOR = "com.querydsl:querydsl-apt:${DependencyVersion.QUERYDSL}:jpa"
 
