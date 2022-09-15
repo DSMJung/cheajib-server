@@ -10,9 +10,9 @@ interface NaverTokenClient {
 
     @PostMapping
     fun getCode(
-        @RequestParam grant_type: String,
-        @RequestParam client_id: String,
-        @RequestParam client_secret: String,
+        @RequestParam("grant_type") grantType: String,
+        @RequestParam("client_id") clientId: String,
+        @RequestParam("client_secret") clientSecret: String,
         @RequestParam code: String,
         @RequestParam state: String
     ): TokenResponse

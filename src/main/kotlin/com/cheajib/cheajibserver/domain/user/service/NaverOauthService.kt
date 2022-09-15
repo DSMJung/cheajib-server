@@ -25,9 +25,9 @@ class NaverOauthService(
 
     fun getCode(code: String): TokenResponse {
         val naverToken: String = "Bearer " + naverTokenClient.getCode(
-            grant_type = GRANT_TYPE,
-            client_id = naverFeignProperties.clientId,
-            client_secret = naverFeignProperties.clientSecret,
+            grantType = GRANT_TYPE,
+            clientId = naverFeignProperties.clientId,
+            clientSecret = naverFeignProperties.clientSecret,
             code = code,
             state = naverFeignProperties.state
         ).accessToken
