@@ -34,7 +34,7 @@ cloud:
       secret-key: ${S3_SECRET_KEY}
     s3:
       bucket: ${S3_BUCKET}
-      url: ${AWS_S3_URL}
+      url: ${S3_URL}
     region:
       static: ${S3_REGION}
     stack:
