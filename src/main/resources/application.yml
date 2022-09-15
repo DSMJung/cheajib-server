@@ -10,6 +10,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
+    open-in-view: false
 
   jackson:
     property-naming-strategy: SNAKE_CASE
@@ -17,6 +18,9 @@ spring:
   redis:
     port: ${REDIS_PORT}
     host: ${REDIS_HOST}
+
+  main:
+    allow-bean-definition-overriding: true
 
 jwt:
   secret-key: ${JWT_SECRET}
@@ -30,7 +34,26 @@ cloud:
       secret-key: ${S3_SECRET_KEY}
     s3:
       bucket: ${S3_BUCKET}
+      url: ${AWS_S3_URL}
     region:
       static: ${S3_REGION}
     stack:
       auto: false
+
+
+auth:
+  google:
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_CLIENT_SECRET}
+    redirect-url: ${NAVER_REDIRECT_URL}
+  naver:
+    client-id: ${NAVER_CLIENT_ID}
+    client-secret: ${NAVER_CLIENT_SECRET}
+    state: ${NAVER_STATE}
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
