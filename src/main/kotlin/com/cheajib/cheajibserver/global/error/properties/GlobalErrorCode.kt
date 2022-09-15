@@ -18,7 +18,5 @@ enum class GlobalErrorCode(
     IMAGE_NOT_FOUND(404, "Image Not Found"),
     INVALID_EXTENSION_FORMAT(401, "Invalid Extension Format"),
 
-    USER_NOT_FOUND(404, "User Not Found"),
-
     INTERNAL_SERVER_ERROR(500, "Internal Server Error")
 }
