@@ -1,6 +1,7 @@
 package com.cheajib.cheajibserver.domain.user.domain
 
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
+import org.hibernate.annotations.ColumnDefault
 import org.hibernate.validator.constraints.Length
 import java.util.*
 import javax.persistence.Column
@@ -47,7 +48,8 @@ class Owner(
     val businessCard: String,
 
     @field:NotNull
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    @Column(columnDefinition = "TINYINT(1)")
+    @ColumnDefault("'0'")
     val isVerify: Boolean
 
 ) : BaseUUIDEntity()
