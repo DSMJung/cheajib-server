@@ -10,5 +10,15 @@ enum class GlobalErrorCode(
     DATA_INTEGRITY_VIOLATION(400, "DataIntegrity Violation"),
     ILLEGAL_ARGUMENT(400, "Illegal Argument"),
 
+    FEIGN_BAD_REQUEST(400, "Feign Bad Request"),
+    FEIGN_EXPIRED_TOKEN(419, "Feign Expired Token"),
+    FEIGN_FORBIDDEN(403, "Feign Forbidden"),
+    FEIGN_UN_AUTHORIZED(401, "Feign Unauthorized"),
+
+    IMAGE_NOT_FOUND(404, "Image Not Found"),
+    INVALID_EXTENSION_FORMAT(401, "Invalid Extension Format"),
+
+    USER_NOT_FOUND(404, "User Not Found"),
+
     INTERNAL_SERVER_ERROR(500, "Internal Server Error")
 }
