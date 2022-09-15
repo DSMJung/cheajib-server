@@ -30,7 +30,7 @@ object Dependency {
     // s3
     const val CLOUD_AWS = "org.springframework.cloud:spring-cloud-starter-aws"
 
-    //queryDSL
+    // queryDSL
     const val QUERYDSL = "com.querydsl:querydsl-jpa:${DependencyVersion.QUERYDSL}"
     const val QUERYDSL_PROCESSOR = "com.querydsl:querydsl-apt:${DependencyVersion.QUERYDSL}:jpa"
 

@@ -10,7 +10,7 @@ import com.cheajib.cheajibserver.infrastructure.feign.dto.response.NaverUserInfo
 import com.cheajib.cheajibserver.infrastructure.feign.dto.response.TokenResponse
 import com.cheajib.cheajibserver.infrastructure.feign.properties.NaverFeignProperties
 import org.springframework.stereotype.Service
-import java.util.*
+import java.util.UUID
 
 @Service
 class NaverOauthService(
