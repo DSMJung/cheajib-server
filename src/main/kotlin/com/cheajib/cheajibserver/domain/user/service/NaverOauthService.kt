@@ -34,13 +34,14 @@ class NaverOauthService(
 
         val userInfo: NaverUserInfoElement = naverInfoFeignClient.getUserInfo(naverToken).response
 
+        println(userInfo.profileImage)
         if (!userRepository.existsByEmail(userInfo.email)) {
             val user = User(
                 id = UUID(0, 0),
                 email = userInfo.email,
                 name = userInfo.name,
                 level = Level.VEGAN,
-                profile = userInfo.profile_image,
+                profile = userInfo.profileImage,
                 sex = when (userInfo.gender) {
                     "M" -> Sex.M
                     "F" -> Sex.F
