@@ -42,7 +42,7 @@ class ImageFacade(
         return baseUrl + imageUrl
     }
 
-    private fun getExtension(multipartFile: MultipartFile): String? {
+    private fun getExtension(multipartFile: MultipartFile): String {
         if (multipartFile.isEmpty || multipartFile.originalFilename == null) {
             throw ImageNotFoundException.EXCEPTION
         }

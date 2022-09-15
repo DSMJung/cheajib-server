@@ -1,9 +1,9 @@
 package com.cheajib.cheajibserver.domain.user.domain
 
+import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import com.cheajib.cheajibserver.domain.user.domain.type.Sex
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.validator.constraints.Length
-import org.slf4j.event.Level
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -19,8 +19,6 @@ class Owner(
     override val email: String,
 
     override val name: String,
-
-    override val password: String,
 
     override var level: Level,
 
@@ -62,7 +60,7 @@ class Owner(
 
     isCertified: Boolean
 
-) : User(id, email, name, password, level, profile, sex) {
+) : User(id, email, name, level, profile, sex) {
 
     @Column(nullable = false)
     @ColumnDefault("'0'")
