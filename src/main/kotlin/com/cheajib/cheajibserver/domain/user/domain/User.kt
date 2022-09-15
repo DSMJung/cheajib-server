@@ -1,17 +1,13 @@
 package com.cheajib.cheajibserver.domain.user.domain
 
+import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import com.cheajib.cheajibserver.domain.user.domain.type.Sex
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
-import org.slf4j.event.Level
-import java.util.UUID
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.Table
+import java.util.*
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 @Entity
@@ -28,10 +24,6 @@ class User(
     @field:NotNull
     @field:Length(max = 74)
     val name: String,
-
-    @field:NotNull
-    @field:Length(max = 60)
-    val password: String,
 
     level: Level,
 
