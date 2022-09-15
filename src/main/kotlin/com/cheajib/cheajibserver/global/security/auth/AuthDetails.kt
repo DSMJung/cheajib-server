@@ -10,7 +10,7 @@ class AuthDetails(
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> = mutableListOf()
 
-    override fun getPassword(): String = user.password
+    override fun getPassword(): String? = null
 
     override fun getUsername(): String = user.email
 

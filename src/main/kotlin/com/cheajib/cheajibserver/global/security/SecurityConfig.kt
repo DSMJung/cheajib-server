@@ -5,14 +5,14 @@ import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.stereotype.Component
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsUtils
 
-@Component
 @EnableWebSecurity
 class SecurityConfig {
+    @Throws(Exception::class)
     @Bean
-    fun configure(http: HttpSecurity) {
+    fun configure(http: HttpSecurity): SecurityFilterChain {
         http
             .csrf().disable()
             .formLogin().disable()
@@ -50,5 +50,7 @@ class SecurityConfig {
             .antMatchers(HttpMethod.PATCH, "/owner").authenticated()
             // comments
             .antMatchers(HttpMethod.POST, "/comments").authenticated()
+
+        return http.build()
     }
 }
