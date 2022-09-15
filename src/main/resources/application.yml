@@ -45,7 +45,7 @@ auth:
   google:
     client-id: ${GOOGLE_CLIENT_ID}
     client-secret: ${GOOGLE_CLIENT_SECRET}
-    redirect-url: ${NAVER_REDIRECT_URL}
+    redirect-url: ${GOOGLE_REDIRECT_URL}
   naver:
     client-id: ${NAVER_CLIENT_ID}
     client-secret: ${NAVER_CLIENT_SECRET}
