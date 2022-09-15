@@ -6,12 +6,11 @@ import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
-import java.util.UUID
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
 import javax.persistence.Table
-
 import javax.validation.constraints.NotNull
 
 @Entity
@@ -41,14 +40,12 @@ class User(
 ) : BaseUUIDEntity() {
 
     @field:NotNull
-    @field:Length(max = 11)
-    @Enumerated(EnumType.STRING)
+    @field:Enumerated(EnumType.STRING)
     var level = level
         protected set
 
     @field:NotNull
-    @field:Length(max = 1)
-    @Enumerated(EnumType.STRING)
+    @field:Enumerated(EnumType.STRING)
     var sex = sex
         protected set
 }
