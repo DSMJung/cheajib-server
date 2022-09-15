@@ -7,7 +7,6 @@ import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
 import java.util.UUID
-import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
@@ -22,13 +21,20 @@ class User(
 
     override val id: UUID,
 
-    @field:NotNull @field:Length(max = 64) val email: String,
+    @field:NotNull
+    @field:Length(max = 64)
+    val email: String,
 
-    @field:NotNull @field:Length(max = 74) val name: String,
+    @field:NotNull
+    @field:Length(max = 74)
+    val name: String,
 
     level: Level,
 
-    @Column(nullable = false) @ColumnDefault("'default_image'") @field:Length(max = 255) val profile: String,
+    @field:NotNull
+    @ColumnDefault("'default_image'")
+    @field:Length(max = 255)
+    val profile: String,
 
     sex: Sex
 
