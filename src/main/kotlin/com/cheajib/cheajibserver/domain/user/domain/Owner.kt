@@ -1,10 +1,8 @@
 package com.cheajib.cheajibserver.domain.user.domain
 
-import com.cheajib.cheajibserver.domain.user.domain.type.Level
-import com.cheajib.cheajibserver.domain.user.domain.type.Sex
-import org.hibernate.annotations.ColumnDefault
+import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.validator.constraints.Length
-import java.util.UUID
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
@@ -15,16 +13,6 @@ import javax.validation.constraints.NotNull
 class Owner(
 
     override val id: UUID,
-
-    override val email: String,
-
-    override val name: String,
-
-    override var level: Level,
-
-    override val profile: String,
-
-    override var sex: Sex,
 
     @field:NotNull
     @field:Length(max = 5)
@@ -58,12 +46,8 @@ class Owner(
     @field:Length(max = 255)
     val businessCard: String,
 
-    isCertified: Boolean
+    @field:NotNull
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    val isVerify: Boolean
 
-) : User(id, email, name, level, profile, sex) {
-
-    @Column(nullable = false)
-    @ColumnDefault("'0'")
-    var isCertified = isCertified
-        protected set
-}
+) : BaseUUIDEntity()

@@ -32,7 +32,7 @@ class User(
     level: Level,
 
     @field:NotNull
-    @ColumnDefault("'default_image'")
+//    @ColumnDefault("'default_image'")
     @field:Length(max = 255)
     val profile: String,
 

@@ -25,12 +25,8 @@ class Restaurant(
     @field:Length(max = 94)
     val address: String,
 
-    isVerify: Boolean
-
-) : BaseTimeEntity() {
-
-    @Column(nullable = false)
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     @ColumnDefault("'0'")
-    var isVerify = isVerify
-        protected set
-}
+    val isVerify: Boolean
+
+) : BaseTimeEntity()
