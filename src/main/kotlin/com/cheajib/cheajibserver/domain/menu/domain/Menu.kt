@@ -50,7 +50,6 @@ class Menu(
         protected set
 
     @field:NotNull
-    @field:Length(max = 11)
     @Enumerated(EnumType.STRING)
     var level = level
         protected set
