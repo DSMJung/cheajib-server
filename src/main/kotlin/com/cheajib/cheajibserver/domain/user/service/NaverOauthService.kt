@@ -34,7 +34,6 @@ class NaverOauthService(
 
         val userInfo: NaverUserInfoElement = naverInfoFeignClient.getUserInfo(naverToken).response
 
-        println(userInfo.profileImage)
         if (!userRepository.existsByEmail(userInfo.email)) {
             val user = User(
                 id = UUID(0, 0),
