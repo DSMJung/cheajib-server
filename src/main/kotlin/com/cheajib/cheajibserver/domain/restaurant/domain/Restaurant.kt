@@ -4,7 +4,7 @@ import com.cheajib.cheajibserver.global.entity.BaseTimeEntity
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
-import java.util.UUID
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
@@ -28,8 +28,7 @@ class Restaurant(
     isVerify: Boolean
 
 ) : BaseTimeEntity() {
-
-    @Column(nullable = false)
+    @Column(columnDefinition = "TINYINT(1)")
     @ColumnDefault("'0'")
     var isVerify = isVerify
         protected set
