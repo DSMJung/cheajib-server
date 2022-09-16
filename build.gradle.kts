@@ -30,23 +30,19 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation(Dependency.R2DBC)
     implementation(Dependency.VALIDATION)
     implementation(Dependency.WEB)
     implementation(Dependency.JACKSON)
     implementation(Dependency.JPA)
-    implementation(Dependency.Reactor.KOTLIN_EXTENSIONS)
     implementation(Dependency.REFLECT)
     implementation(Dependency.STDLIB_JDK8)
-    implementation(Dependency.Reactor.KOTLINX_COROUTINES)
     implementation(Dependency.SPRING_SECURITY)
-    implementation(Dependency.REDIS_REACTIVE)
+    implementation(Dependency.REDIS)
     implementation(Dependency.CLOUD_AWS)
-    implementation(Dependency.OAUTH2)
     kapt(Dependency.QUERYDSL_PROCESSOR)
     implementation(Dependency.QUERYDSL)
-    testImplementation(Dependency.Reactor.TEST)
-    testImplementation(Dependency.TEST)
+    runtimeOnly(Dependency.MYSQL)
+    implementation(Dependency.OPENFEIGN)
 
 }
 
