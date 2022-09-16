@@ -43,4 +43,7 @@ object Dependency {
 
     // MySQL
     const val MYSQL = "mysql:mysql-connector-java"
+
+    // property
+    const val PROPERTIES_SCAN = "org.springframework.boot:spring-boot-configuration-processor"
 }
