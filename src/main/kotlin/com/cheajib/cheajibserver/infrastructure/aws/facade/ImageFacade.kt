@@ -17,14 +17,11 @@ class ImageFacade(
     private val amazonS3Client: AmazonS3Client,
 
     @Value("\${cloud.aws.s3.bucket}")
-    private val bucket: String,
-
-    @Value("\${cloud.aws.s3.url}")
-    private val baseUrl: String,
+    private val bucket: String
 ) {
     fun upload(multipartFile: MultipartFile): String {
-        val extension: String? = getExtension(multipartFile)
-        val imageUrl = "cheajib/" + UUID.randomUUID() + extension
+        val extension: String = getExtension(multipartFile)
+        val imageUrl = "${UUID.randomUUID()} $extension"
 
         val objectMetadata = ObjectMetadata()
         objectMetadata.contentLength = multipartFile.size
@@ -39,7 +36,7 @@ class ImageFacade(
             throw ImageNotFoundException.EXCEPTION
         }
 
-        return baseUrl + imageUrl
+        return amazonS3Client.getUrl(bucket, imageUrl).toString()
     }
 
     private fun getExtension(multipartFile: MultipartFile): String {
