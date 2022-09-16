@@ -15,7 +15,7 @@ class RegisterMenuService(
 ) {
     @Transactional
     fun execute(restaurantId: UUID, request: RegisterMenuRequest) {
-        val restaurant = restaurantFacade.findRestaurantById(restaurantId)
+        val restaurant = restaurantFacade.getRestaurantById(restaurantId)
 
         val menu = Menu(
             id = UUID(0, 0),

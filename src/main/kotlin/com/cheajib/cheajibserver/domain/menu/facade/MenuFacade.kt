@@ -11,7 +11,7 @@ import java.util.UUID
 class MenuFacade(
     private val menuRepository: MenuRepository
 ) {
-    fun findMenuById(id: UUID): Menu {
+    fun getMenuById(id: UUID): Menu {
         return menuRepository.findByIdOrNull(id) ?: throw MenuNotFoundException.EXCEPTION
     }
 }
