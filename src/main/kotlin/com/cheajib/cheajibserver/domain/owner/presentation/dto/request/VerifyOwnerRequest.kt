@@ -14,12 +14,15 @@ data class VerifyOwnerRequest(
     val postalCode: String,
 
     @field:NotBlank
+    @field:Size(min = 1, max = 94)
     val address: String,
 
     @field:NotBlank
+    @field:Size(min = 1, max = 94)
     val detailAddress: String,
 
     @field:NotBlank
+    @field:Size(min = 1, max = 74)
     val ownerName: String,
 
     @field:NotBlank
