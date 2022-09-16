@@ -18,10 +18,8 @@ class WriteReviewService(
     private val userFacade: UserFacade,
     private val menuFacade: MenuFacade
 ) {
-
     @Transactional
     fun execute(request: WriteReviewRequest) {
-
         val user = userFacade.findCurrentUser()
 
         for (menuElement in request.menuList) {

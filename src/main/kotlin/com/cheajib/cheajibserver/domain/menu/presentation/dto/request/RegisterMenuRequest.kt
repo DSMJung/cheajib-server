@@ -4,7 +4,7 @@ import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
-data class RegisterMenuRequest (
+data class RegisterMenuRequest(
 
     @field: Size(max = 74)
     @field: NotBlank
