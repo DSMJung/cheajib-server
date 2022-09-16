@@ -40,7 +40,7 @@ class SecurityConfig {
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
             .antMatchers(HttpMethod.DELETE, "/menu/{menu-id}").authenticated()
             // images
-            .antMatchers(HttpMethod.POST, "/images/attachment").authenticated()
+            .antMatchers(HttpMethod.POST, "/images").authenticated()
             // review
             .antMatchers(HttpMethod.DELETE, "/review").authenticated()
             .antMatchers(HttpMethod.GET, "/review/my-review/lists").authenticated()
