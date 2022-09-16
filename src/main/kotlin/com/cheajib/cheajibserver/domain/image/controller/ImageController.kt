@@ -15,7 +15,7 @@ class ImageController(
 ) {
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("images")
+    @PostMapping("/images")
     fun imageUpload(@RequestParam image: List<MultipartFile>): ImageListResponse {
         return imageService.imageUpload(image)
     }
