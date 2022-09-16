@@ -1,4 +1,4 @@
-package com.cheajib.cheajibserver.domain.owner.controller.dto.request
+package com.cheajib.cheajibserver.domain.owner.presentation.dto.request
 
 import com.cheajib.cheajibserver.domain.user.domain.type.Sex
 import javax.validation.constraints.NotBlank
