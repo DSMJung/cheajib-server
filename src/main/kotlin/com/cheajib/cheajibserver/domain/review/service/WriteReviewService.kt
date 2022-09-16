@@ -20,10 +20,10 @@ class WriteReviewService(
 ) {
     @Transactional
     fun execute(request: WriteReviewRequest) {
-        val user = userFacade.findCurrentUser()
+        val user = userFacade.getCurrentUser()
 
         for (menuElement in request.menuList) {
-            val menu = menuFacade.findMenuById(menuElement.menuId)
+            val menu = menuFacade.getMenuById(menuElement.menuId)
             val newMenu = Menu(
                 id = menu.id,
                 name = menu.name,

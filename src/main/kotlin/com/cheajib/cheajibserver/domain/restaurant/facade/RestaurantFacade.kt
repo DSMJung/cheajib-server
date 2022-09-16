@@ -11,7 +11,7 @@ import java.util.UUID
 class RestaurantFacade(
     private val restaurantRepository: RestaurantRepository
 ) {
-    fun findRestaurantById(id: UUID): Restaurant {
+    fun getRestaurantById(id: UUID): Restaurant {
         return restaurantRepository.findByIdOrNull(id) ?: throw RestaurantNotFoundException.EXCEPTION
     }
 }
