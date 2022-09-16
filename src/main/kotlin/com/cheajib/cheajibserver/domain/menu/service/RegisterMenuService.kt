@@ -23,6 +23,7 @@ class RegisterMenuService(
             price = request.price,
             description = request.description,
             menuImageUrl = request.menuImageUrl,
+            level = request.level,
             restaurant = restaurant
         )
         menuRepository.save(menu)

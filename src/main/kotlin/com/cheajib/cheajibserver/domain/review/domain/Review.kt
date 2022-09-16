@@ -1,6 +1,5 @@
 package com.cheajib.cheajibserver.domain.review.domain
 
-import com.cheajib.cheajibserver.domain.menu.domain.Menu
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.validator.constraints.Length
@@ -28,9 +27,6 @@ class Review(
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id", nullable = false)
-    val menu: Menu
 
 ) : BaseUUIDEntity() {
 
