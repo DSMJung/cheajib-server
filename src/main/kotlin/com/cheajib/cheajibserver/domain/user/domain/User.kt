@@ -48,4 +48,8 @@ class User(
     @field:Enumerated(EnumType.STRING)
     var sex = sex
         protected set
+
+    fun setVegan(level: Level) {
+        this.level = level
+    }
 }
