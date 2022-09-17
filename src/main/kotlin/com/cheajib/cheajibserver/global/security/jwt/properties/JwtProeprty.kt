@@ -1,8 +1,8 @@
-package com.xquare.qkfflgkwk.global.security.properties
+package com.cheajib.cheajibserver.global.security.jwt.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
-import java.util.*
+import java.util.Base64
 
 @ConstructorBinding
 @ConfigurationProperties(prefix = "jwt")
