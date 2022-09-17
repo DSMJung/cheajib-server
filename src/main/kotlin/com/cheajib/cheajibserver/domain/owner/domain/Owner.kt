@@ -1,4 +1,4 @@
-package com.cheajib.cheajibserver.domain.user.domain
+package com.cheajib.cheajibserver.domain.owner.domain
 
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.annotations.ColumnDefault
