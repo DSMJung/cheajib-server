@@ -1,13 +1,10 @@
 package com.cheajib.cheajibserver.domain.menu.domain
 
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
-import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.validator.constraints.Length
 import java.util.UUID
 import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
@@ -32,8 +29,6 @@ class Menu(
 
     menuImageUrl: String,
 
-    level: Level,
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     val restaurant: Restaurant
@@ -47,10 +42,5 @@ class Menu(
 
     @field:NotNull
     var menuImageUrl = menuImageUrl
-        protected set
-
-    @field:NotNull
-    @Enumerated(EnumType.STRING)
-    var level = level
         protected set
 }
