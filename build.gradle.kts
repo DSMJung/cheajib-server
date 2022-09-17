@@ -43,6 +43,7 @@ dependencies {
     implementation(Dependency.QUERYDSL)
     runtimeOnly(Dependency.MYSQL)
     implementation(Dependency.OPENFEIGN)
+    implementation(Dependency.JWT)
 
 }
 

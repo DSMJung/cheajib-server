@@ -23,6 +23,7 @@ object Dependency {
 
     // security
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
+    const val JWT = "io.jsonwebtoken:jjwt:0.9.0"
 
     // redis
     const val REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
