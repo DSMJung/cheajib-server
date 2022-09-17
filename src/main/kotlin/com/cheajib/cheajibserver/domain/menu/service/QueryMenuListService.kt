@@ -7,6 +7,7 @@ import com.cheajib.cheajibserver.domain.menu.presentation.dto.response.MenuListR
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Service
@@ -15,7 +16,7 @@ class QueryMenuListService(
     private val menuRepository: MenuRepository,
     private val menuLevelRepository: MenuLevelRepository
 ) {
-
+    @Transactional(readOnly = true)
     fun execute(restaurantId: UUID): MenuListResponse {
         val restaurant: Restaurant = restaurantFacade.getRestaurantById(restaurantId)
 
