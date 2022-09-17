@@ -1,7 +1,7 @@
 package com.cheajib.cheajibserver.global.security.jwt
 
-import com.cheajib.cheajibserver.domain.auth.domain.RefreshToken
-import com.cheajib.cheajibserver.domain.auth.domain.repository.RefreshTokenRepository
+import com.cheajib.cheajibserver.domain.user.domain.RefreshToken
+import com.cheajib.cheajibserver.domain.user.domain.repository.RefreshTokenRepository
 import com.cheajib.cheajibserver.global.security.auth.AuthDetailsService
 import com.cheajib.cheajibserver.global.security.jwt.exception.ExpiredTokenException
 import com.cheajib.cheajibserver.global.security.jwt.exception.JwtValidateException
