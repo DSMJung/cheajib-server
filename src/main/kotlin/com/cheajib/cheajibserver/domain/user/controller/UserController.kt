@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
+import javax.validation.Valid
 
 @RequestMapping("/users")
 class UserController(
@@ -15,7 +16,11 @@ class UserController(
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/level")
-    fun setVeganLevel(@RequestBody request: SetVeganLevelRequest) {
+    fun setVeganLevel(
+        @RequestBody
+        @Valid
+        request: SetVeganLevelRequest
+    ) {
         return setVeganLevelService.execute(request)
     }
 }
