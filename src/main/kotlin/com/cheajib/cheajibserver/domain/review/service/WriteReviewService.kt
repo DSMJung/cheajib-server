@@ -19,7 +19,7 @@ class WriteReviewService(
     private val menuRepository: MenuRepository,
     private val reviewImageRepository: ReviewImageRepository,
     private val userFacade: UserFacade,
-    private val menuFacade: MenuFacade,
+    private val menuFacade: MenuFacade
 ) {
     @Transactional
     fun execute(request: WriteReviewRequest) {
@@ -52,7 +52,7 @@ class WriteReviewService(
                 id = UUID(0, 0),
                 imageUrl = image,
                 review = review
-                )
+            )
             reviewImageRepository.save(reviewImage)
         }
     }
