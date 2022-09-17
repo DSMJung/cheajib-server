@@ -3,8 +3,16 @@ package com.cheajib.cheajibserver.domain.menu.domain
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.annotations.ColumnDefault
-import java.util.*
-import javax.persistence.*
+import java.util.UUID
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.FetchType
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.MapsId
+import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 @Entity
