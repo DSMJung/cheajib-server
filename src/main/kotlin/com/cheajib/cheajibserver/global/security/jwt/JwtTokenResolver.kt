@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest
 
 @Component
 class JwtTokenResolver(
-    private val jwtProperty: JwtProperty,
+    private val jwtProperty: JwtProperty
 ) {
     fun resolveToken(httpServletRequest: HttpServletRequest): String? =
         httpServletRequest.getHeader(jwtProperty.header)
