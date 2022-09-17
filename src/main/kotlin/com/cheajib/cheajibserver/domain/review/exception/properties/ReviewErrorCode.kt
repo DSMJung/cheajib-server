@@ -1,4 +1,4 @@
-package com.cheajib.cheajibserver.domain.review.exception
+package com.cheajib.cheajibserver.domain.review.exception.properties
 
 import com.cheajib.cheajibserver.global.error.properties.ErrorProperty
 
