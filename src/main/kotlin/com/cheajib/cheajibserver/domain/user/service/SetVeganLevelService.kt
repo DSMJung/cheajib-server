@@ -1,6 +1,6 @@
 package com.cheajib.cheajibserver.domain.user.service
 
-import com.cheajib.cheajibserver.domain.user.controller.dto.SetVeganLevelRequest
+import com.cheajib.cheajibserver.domain.user.presentation.dto.SetVeganLevelRequest
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
