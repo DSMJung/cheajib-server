@@ -31,9 +31,7 @@ class QueryRestaurantListService(
                 MainMenuListResponse(
                     mainMenu = it.menuImageUrl
                 )
-
-            }
-            ?.toList() ?: throw MenuNotFoundException.EXCEPTION
+            }?.toList() ?: throw MenuNotFoundException.EXCEPTION
 
         return QueryRestaurantResponse(
             restaurantName = restaurant.name,
