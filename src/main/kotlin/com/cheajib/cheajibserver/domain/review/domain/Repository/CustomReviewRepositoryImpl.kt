@@ -5,14 +5,14 @@ import com.cheajib.cheajibserver.domain.restaurant.domain.QRestaurant.restaurant
 import com.cheajib.cheajibserver.domain.review.domain.QReview.review
 import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.MyReviewVO
 import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.QMyReviewVO
-import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.QOwnerReviewVO
+import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.QOwnerCommentVO
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.querydsl.jpa.impl.JPAQueryFactory
 
 class CustomReviewRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory
 ) : CustomReviewRepository {
-    override fun queryMyReviewList(user: User?): List<MyReviewVO>? {
+    override fun queryMyReview(user: User): List<MyReviewVO> {
         return jpaQueryFactory
             .select(
                 QMyReviewVO(
@@ -21,7 +21,7 @@ class CustomReviewRepositoryImpl(
                     review.reviewPoint,
                     review.content,
                     review.createAt,
-                    QOwnerReviewVO(
+                    QOwnerCommentVO(
                         comment1.comment,
                         comment1.createAt
                     )
@@ -32,7 +32,6 @@ class CustomReviewRepositoryImpl(
             .leftJoin(review, comment1.review)
             .where(review.user.eq(user))
             .orderBy(review.createAt.desc())
-            .fetch()
+            .fetch().toList()
     }
 }
-
