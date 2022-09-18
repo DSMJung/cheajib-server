@@ -25,6 +25,12 @@ class Restaurant(
     @field:Length(max = 94)
     val address: String,
 
+    @field: NotNull
+    val latitude: Double,
+
+    @field: NotNull
+    val longitude: Double,
+
     isVerify: Boolean
 
 ) : BaseTimeEntity() {
