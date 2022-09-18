@@ -8,12 +8,13 @@ import com.cheajib.cheajibserver.global.security.jwt.exception.JwtValidateExcept
 import com.cheajib.cheajibserver.global.security.jwt.exception.SignatureTokenException
 import com.cheajib.cheajibserver.global.security.jwt.exception.UnexpectedTokenException
 import com.cheajib.cheajibserver.global.security.jwt.properties.JwtProperty
+import com.cheajib.cheajibserver.infrastructure.feign.dto.response.TokenResponse
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.MalformedJwtException
-import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.SignatureException
+import io.jsonwebtoken.MalformedJwtException
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
@@ -27,18 +28,25 @@ class JwtTokenProvider(
     private val jwtProperty: JwtProperty,
     private val refreshTokenRepository: RefreshTokenRepository
 ) {
-
     companion object {
         private const val REFRESH_KEY = "refresh"
+        private const val ACCESS_KEY = "access"
+    }
+
+    fun getToken(email: String): TokenResponse {
+        val accessToken: String = generateToken(email, jwtProperty.accessExp, ACCESS_KEY)
+//        val refreshToken: String = generateRefreshToken(email)
+
+        return TokenResponse(accessToken = accessToken)
     }
 
     fun generateRefreshToken(email: String): String {
-        val newRefreshToken: String = generateToken(email, jwtProperty.accessExp, REFRESH_KEY)
+        val newRefreshToken: String = generateToken(email, jwtProperty.refreshExp, REFRESH_KEY)
         refreshTokenRepository.save(
             RefreshToken(
-            email = (email),
-            token = newRefreshToken
-        )
+                email = (email),
+                token = newRefreshToken
+            )
         )
         return newRefreshToken
     }
