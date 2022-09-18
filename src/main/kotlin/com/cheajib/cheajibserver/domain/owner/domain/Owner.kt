@@ -39,17 +39,37 @@ class Owner(
     @field:Length(max = 11)
     val phoneNumber: String,
 
-    @field:NotNull
-    @field:Length(max = 255)
-    val idCard: String,
+    idCard: String,
+
+    businessCard: String,
+
+    isVerify: Boolean
+
+) : BaseUUIDEntity() {
+
+    companion object {
+        private const val DEFAULT_IMAGE: String = "a"
+    }
 
     @field:NotNull
     @field:Length(max = 255)
-    val businessCard: String,
+    var businessCard = businessCard
+        protected set
+
+    @field:NotNull
+    @field:Length(max = 255)
+    var idCard = idCard
+        protected set
 
     @field:NotNull
     @Column(columnDefinition = "TINYINT(1)")
     @ColumnDefault("'0'")
-    val isVerify: Boolean
+    var isVerify = isVerify
+        protected set
 
-) : BaseUUIDEntity()
+    fun approve() {
+        this.isVerify = true
+        this.idCard = DEFAULT_IMAGE
+        this.businessCard = DEFAULT_IMAGE
+    }
+}
