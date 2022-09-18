@@ -31,6 +31,9 @@ class Restaurant(
     @field: NotNull
     val longitude: Double,
 
+    @field:NotNull
+    val mainImageUrl: String,
+
     isVerify: Boolean
 
 ) : BaseTimeEntity() {
