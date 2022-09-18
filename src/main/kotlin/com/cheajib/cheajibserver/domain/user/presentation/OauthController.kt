@@ -1,4 +1,4 @@
-package com.cheajib.cheajibserver.domain.user.controller
+package com.cheajib.cheajibserver.domain.user.presentation
 
 import com.cheajib.cheajibserver.domain.user.service.NaverOauthService
 import com.cheajib.cheajibserver.infrastructure.feign.dto.response.TokenResponse
