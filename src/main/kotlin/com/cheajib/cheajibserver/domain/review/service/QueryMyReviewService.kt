@@ -1,7 +1,9 @@
 package com.cheajib.cheajibserver.domain.review.service
 
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
-import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.MyReviewListVO
+import com.cheajib.cheajibserver.domain.review.presentation.dto.response.MyReviewListResponse
+import com.cheajib.cheajibserver.domain.review.presentation.dto.response.MyReviewResponse
+import com.cheajib.cheajibserver.domain.review.presentation.dto.response.OwnerCommentResponse
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
@@ -13,10 +15,26 @@ class QueryMyReviewService(
     private val reviewRepository: ReviewRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(): MyReviewListVO {
+    fun execute(): MyReviewListResponse {
         val user: User = userFacade.getCurrentUser()
-        val myReviewList = reviewRepository.queryMyReviewList(user)
-
-        return MyReviewListVO(myReviewList)
+        return MyReviewListResponse(
+            reviewRepository.queryMyReview(user)
+                .map {
+                    MyReviewResponse(
+                        restaurantName = it.restaurantName,
+                        restaurantId = it.restaurantId,
+                        reviewPoint =  it.reviewPoint,
+                        content = it.content,
+                        createdAt = it.createdAt,
+                        it.ownerCommentVO.let { ownerComment ->
+                            OwnerCommentResponse(
+                                ownerComment.comment,
+                                ownerComment.createAt
+                            )
+                        }
+                    )
+                }
+                .toList()
+        )
     }
 }
