@@ -23,7 +23,7 @@ class QueryMyReviewService(
                     MyReviewResponse(
                         restaurantName = it.restaurantName,
                         restaurantId = it.restaurantId,
-                        reviewPoint =  it.reviewPoint,
+                        reviewPoint = it.reviewPoint,
                         content = it.content,
                         createdAt = it.createdAt,
                         it.ownerCommentVO.let { ownerComment ->
