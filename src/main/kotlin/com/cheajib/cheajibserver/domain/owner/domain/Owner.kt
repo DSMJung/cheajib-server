@@ -64,7 +64,6 @@ class Owner(
         protected set
 
     @field:NotNull
-    @Column(columnDefinition = "TINYINT(1)")
     @ColumnDefault("'0'")
     var isVerify = isVerify
         protected set
