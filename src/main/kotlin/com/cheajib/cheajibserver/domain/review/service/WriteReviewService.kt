@@ -3,6 +3,7 @@ package com.cheajib.cheajibserver.domain.review.service
 import com.cheajib.cheajibserver.domain.menu.domain.Menu
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
+import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.domain.Review
 import com.cheajib.cheajibserver.domain.review.presentation.dto.request.WriteReviewRequest
@@ -17,11 +18,13 @@ class WriteReviewService(
     private val reviewRepository: ReviewRepository,
     private val menuRepository: MenuRepository,
     private val userFacade: UserFacade,
-    private val menuFacade: MenuFacade
+    private val menuFacade: MenuFacade,
+    private val restaurantFacade: RestaurantFacade
 ) {
     @Transactional
-    fun execute(request: WriteReviewRequest) {
+    fun execute(restaurantId: UUID, request: WriteReviewRequest) {
         val user = userFacade.getCurrentUser()
+        val restaurant = restaurantFacade.getRestaurantById(restaurantId)
 
         for (menuElement in request.menuList) {
             val menu = menuFacade.getMenuById(menuElement.menuId)
@@ -42,7 +45,8 @@ class WriteReviewService(
             createAt = LocalDateTime.now(),
             reviewPoint = request.reviewPoint,
             content = request.content,
-            user = user
+            user = user,
+            restaurant = restaurant
         )
         reviewRepository.save(review)
     }
