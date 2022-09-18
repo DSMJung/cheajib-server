@@ -10,6 +10,7 @@ class WebMvcConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
             .allowedMethods("*")
+            .allowedHeaders("*")
             .allowedOrigins(
                 "http://localhost:3000",
                 "https://cheajib-client.web.app"
