@@ -11,7 +11,8 @@ class WebMvcConfig : WebMvcConfigurer {
         registry.addMapping("/**")
             .allowedMethods("*")
             .allowedOrigins(
-                "http://localhost:3000", "https://cheajib-client.web.app"
+                "http://localhost:3000",
+                "https://cheajib-client.web.app"
             )
     }
 }
