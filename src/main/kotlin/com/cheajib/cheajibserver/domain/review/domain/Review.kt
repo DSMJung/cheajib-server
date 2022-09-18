@@ -4,7 +4,6 @@ import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
 import org.hibernate.validator.constraints.Length
-import org.springframework.data.domain.DomainEvents
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.FetchType
