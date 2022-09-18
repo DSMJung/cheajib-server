@@ -9,7 +9,7 @@ enum class JwtErrorCode(
 
 ) : ErrorProperty {
 
-    JWT_VALIDATE_FAIL(401, "Token Validate Failed"),
+    JWT_VALIDATE_FAILED(401, "Token Validate Failed"),
     JWT_EXPIRED(401, "Jwt Token Expired"),
     JWT_SIGNATURE(401, "Invalid Signature"),
     UNEXPECTED_TOKEN(500, "Unexpected Token Exception")
