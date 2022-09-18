@@ -3,17 +3,21 @@ package com.cheajib.cheajibserver.domain.review.service
 import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
+import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewImageRepository
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.domain.Review
+import com.cheajib.cheajibserver.domain.review.domain.ReviewImage
 import com.cheajib.cheajibserver.domain.review.presentation.dto.request.WriteReviewRequest
 import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
+import java.util.UUID
 
 @Service
 class WriteReviewService(
     private val reviewRepository: ReviewRepository,
+    private val menuRepository: MenuRepository,
+    private val reviewImageRepository: ReviewImageRepository,
     private val menuLevelRepository: MenuLevelRepository,
     private val userFacade: UserFacade,
     private val menuFacade: MenuFacade
@@ -41,5 +45,14 @@ class WriteReviewService(
             user = user
         )
         reviewRepository.save(review)
+
+        for (image in request.imageUrl) {
+            val reviewImage = ReviewImage(
+                id = UUID(0, 0),
+                imageUrl = image,
+                review = review
+            )
+            reviewImageRepository.save(reviewImage)
+        }
     }
 }
