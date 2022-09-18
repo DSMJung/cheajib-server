@@ -1,8 +1,9 @@
 package com.cheajib.cheajibserver.domain.review.domain
 
 import com.cheajib.cheajibserver.domain.user.domain.User
-import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
+import com.cheajib.cheajibserver.global.entity.BaseTimeEntity
 import org.hibernate.validator.constraints.Length
+import java.time.LocalDateTime
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -17,6 +18,8 @@ class Review(
 
     override val id: UUID,
 
+    override val createAt: LocalDateTime,
+
     reviewPoint: Int,
 
     @field:NotNull
@@ -28,7 +31,7 @@ class Review(
     val user: User,
 
 
-) : BaseUUIDEntity() {
+    ) : BaseTimeEntity() {
 
     @field:NotNull
     @field:Length(max = 5)

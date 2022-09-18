@@ -9,6 +9,7 @@ import com.cheajib.cheajibserver.domain.review.presentation.dto.request.WriteRev
 import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 import java.util.UUID
 
 @Service
@@ -38,6 +39,7 @@ class WriteReviewService(
 
         val review = Review(
             id = UUID(0, 0),
+            createAt = LocalDateTime.now(),
             reviewPoint = request.reviewPoint,
             content = request.content,
             user = user
