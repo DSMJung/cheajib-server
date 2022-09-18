@@ -14,7 +14,9 @@ class ApproveOwnerService(
 ) {
     @Transactional
     fun execute(request: ApproveOwnerRequest) {
-        val owner: Owner = ownerRepository.findByIdOrNull(request.userId) ?: throw OwnerNotFoundException.EXCEPTION
+        val owner: Owner =
+            ownerRepository.findByIdOrNull(request.userId) ?: throw OwnerNotFoundException.EXCEPTION
+
         owner.approve()
     }
 }
