@@ -10,5 +10,5 @@ class MyReviewVO @QueryProjection constructor(
     val reviewPoint: Int,
     val content: String,
     val createdAt: LocalDateTime,
-    val ownerReviewResponse: OwnerReviewVO
+    val ownerCommentVO: OwnerCommentVO
 )
