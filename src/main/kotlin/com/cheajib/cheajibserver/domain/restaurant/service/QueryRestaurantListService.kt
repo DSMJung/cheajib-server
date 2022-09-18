@@ -42,5 +42,4 @@ class QueryRestaurantListService(
             isVerify = restaurant.isVerify
         )
     }
-
 }
