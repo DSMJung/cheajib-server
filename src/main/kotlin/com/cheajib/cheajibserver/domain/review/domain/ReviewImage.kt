@@ -6,6 +6,7 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.MapsId
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
@@ -18,6 +19,7 @@ class ReviewImage(
     @field:NotNull
     val imageUrl: String,
 
+    @MapsId
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
     val review: Review
