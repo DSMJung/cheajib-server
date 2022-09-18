@@ -35,6 +35,6 @@ class ReviewController(
 
     @GetMapping
     fun queryMyReviewList() {
-       queryMyReviewService.execute()
+        queryMyReviewService.execute()
     }
 }

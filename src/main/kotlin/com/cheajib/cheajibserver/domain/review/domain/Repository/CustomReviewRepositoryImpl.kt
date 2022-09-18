@@ -10,7 +10,7 @@ import com.cheajib.cheajibserver.domain.user.domain.User
 import com.querydsl.jpa.impl.JPAQueryFactory
 
 class CustomReviewRepositoryImpl(
-    private val jpaQueryFactory: JPAQueryFactory,
+    private val jpaQueryFactory: JPAQueryFactory
 ) : CustomReviewRepository {
     override fun queryMyReviewList(user: User?): List<MyReviewVO>? {
         return jpaQueryFactory
