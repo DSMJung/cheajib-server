@@ -1,5 +1,6 @@
 package com.cheajib.cheajibserver.domain.review.domain
 
+import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.global.entity.BaseTimeEntity
 import org.hibernate.validator.constraints.Length
@@ -30,8 +31,11 @@ class Review(
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    val restaurant: Restaurant
 
-    ) : BaseTimeEntity() {
+) : BaseTimeEntity() {
 
     @field:NotNull
     @field:Length(max = 5)
