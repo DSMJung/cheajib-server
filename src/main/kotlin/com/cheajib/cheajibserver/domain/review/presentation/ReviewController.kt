@@ -5,6 +5,10 @@ import com.cheajib.cheajibserver.domain.review.service.QueryMyReviewService
 import com.cheajib.cheajibserver.domain.review.service.WriteReviewService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import com.cheajib.cheajibserver.domain.review.service.DeleteReviewService
+import com.cheajib.cheajibserver.domain.review.service.WriteReviewService
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -19,8 +23,8 @@ import javax.validation.Valid
 class ReviewController(
     private val writeReviewService: WriteReviewService,
     private val queryMyReviewService: QueryMyReviewService
+    private val deleteReviewService: DeleteReviewService
 ) {
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{restaurant-id}")
     fun writeReview(
@@ -36,5 +40,14 @@ class ReviewController(
     @GetMapping
     fun queryMyReviewList() {
         queryMyReviewService.execute()
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{review-id}")
+    fun deleteReview(
+        @PathVariable("review-id")
+        reviewId: UUID
+    ) {
+        deleteReviewService.execute(reviewId)
     }
 }

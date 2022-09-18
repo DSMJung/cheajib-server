@@ -2,6 +2,7 @@ package com.cheajib.cheajibserver.domain.user.facade
 
 import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.domain.user.domain.repository.UserRepository
+import com.cheajib.cheajibserver.domain.user.exception.UserNotFoundException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
@@ -11,12 +12,12 @@ class UserFacade(
 ) {
 
     fun getUserByEmail(email: String): User {
-        return userRepository.findByEmail(email) ?: throw RuntimeException() // 대현이 pr 머지후 변경
+        return userRepository.findByEmail(email) ?: throw UserNotFoundException.EXCEPTION
     }
 
     fun getCurrentUser(): User {
         val authentication =
-            SecurityContextHolder.getContext().authentication ?: throw RuntimeException() //대현이 pr머시 후 변경
+            SecurityContextHolder.getContext().authentication ?: throw UserNotFoundException.EXCEPTION
         val email = authentication.name
         return getUserByEmail(email)
     }
