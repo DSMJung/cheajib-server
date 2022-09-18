@@ -1,6 +1,5 @@
 package com.cheajib.cheajibserver.domain.restaurant.service
 
-import com.cheajib.cheajibserver.domain.menu.domain.Menu
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
 import com.cheajib.cheajibserver.domain.menu.exception.MenuNotFoundException
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
