@@ -23,6 +23,7 @@ object Dependency {
 
     // security
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
+    const val JWT = "io.jsonwebtoken:jjwt:0.9.0"
 
     // redis
     const val REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
@@ -43,4 +44,7 @@ object Dependency {
 
     // MySQL
     const val MYSQL = "mysql:mysql-connector-java"
+
+    // property
+    const val PROPERTIES_SCAN = "org.springframework.boot:spring-boot-configuration-processor"
 }
