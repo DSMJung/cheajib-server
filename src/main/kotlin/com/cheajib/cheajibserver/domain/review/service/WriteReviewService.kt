@@ -1,7 +1,7 @@
 package com.cheajib.cheajibserver.domain.review.service
 
-import com.cheajib.cheajibserver.domain.menu.domain.Menu
-import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
+import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
+import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewImageRepository
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
@@ -18,6 +18,7 @@ class WriteReviewService(
     private val reviewRepository: ReviewRepository,
     private val menuRepository: MenuRepository,
     private val reviewImageRepository: ReviewImageRepository,
+    private val menuLevelRepository: MenuLevelRepository,
     private val userFacade: UserFacade,
     private val menuFacade: MenuFacade
 ) {
@@ -27,16 +28,14 @@ class WriteReviewService(
 
         for (menuElement in request.menuList) {
             val menu = menuFacade.getMenuById(menuElement.menuId)
-            val newMenu = Menu(
+
+            val menuLevel = MenuLevel(
                 id = menu.id,
-                name = menu.name,
-                price = menu.price,
-                description = menu.description,
-                menuImageUrl = menu.menuImageUrl,
+                menu = menu,
                 level = menuElement.level,
-                restaurant = menu.restaurant
+                levelCount = 0
             )
-            menuRepository.save(newMenu)
+            menuLevelRepository.save(menuLevel)
         }
 
         val review = Review(
