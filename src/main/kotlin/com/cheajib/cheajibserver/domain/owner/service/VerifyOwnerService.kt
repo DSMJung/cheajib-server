@@ -8,15 +8,15 @@ import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 
 @Service
-class OwnerService(
+class VerifyOwnerService(
     private val userFacade: UserFacade,
     private val ownerRepository: OwnerRepository
 ) {
 
-    fun verifyOwner(request: VerifyOwnerRequest) {
+    fun execute(request: VerifyOwnerRequest) {
         val user: User = userFacade.getCurrentUser()
 
-        val owner: Owner = Owner(
+        val owner = Owner(
             id = user.id,
             postalCode = request.postalCode,
             address = request.address,
