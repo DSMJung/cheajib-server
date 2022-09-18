@@ -32,20 +32,20 @@ class JwtTokenProvider(
         private const val REFRESH_KEY = "refresh"
     }
 
-    fun generateRefreshToken(accountId: String): String {
-        val newRefreshToken: String = generateToken(accountId, jwtProperty.accessExp, REFRESH_KEY)
+    fun generateRefreshToken(email: String): String {
+        val newRefreshToken: String = generateToken(email, jwtProperty.accessExp, REFRESH_KEY)
         refreshTokenRepository.save(
             RefreshToken(
-            accountId = (accountId),
+            email = (email),
             token = newRefreshToken
         )
         )
         return newRefreshToken
     }
 
-    private fun generateToken(accountId: String, expiration: Long, type: String): String {
+    private fun generateToken(email: String, expiration: Long, type: String): String {
         return "Bearer " + Jwts.builder()
-            .setSubject(accountId)
+            .setSubject(email)
             .setIssuedAt(Date())
             .signWith(SignatureAlgorithm.HS512, jwtProperty.secretKey)
             .setExpiration(Date(System.currentTimeMillis() + expiration * 1000))

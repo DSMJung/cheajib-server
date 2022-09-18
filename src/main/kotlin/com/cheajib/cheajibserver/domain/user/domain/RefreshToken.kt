@@ -14,5 +14,4 @@ class RefreshToken(
     @Indexed
     @NotBlank
     val token: String
-
 )
