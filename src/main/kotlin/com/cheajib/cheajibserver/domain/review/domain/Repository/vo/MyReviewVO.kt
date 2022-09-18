@@ -6,7 +6,7 @@ import java.util.UUID
 
 class MyReviewVO @QueryProjection constructor(
     val restaurantName: String,
-    val restaurant_id: UUID,
+    val restaurantId: UUID,
     val reviewPoint: Int,
     val content: String,
     val createdAt: LocalDateTime,

@@ -6,7 +6,6 @@ import com.cheajib.cheajibserver.domain.user.domain.User
 import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
 
 @Service
 class QueryMyReviewService(
