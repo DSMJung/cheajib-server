@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Service
-class QueryRestaurantListService(
+class QueryRestauranPreviewService(
     val restaurantFacade: RestaurantFacade,
     val menuRepository: MenuRepository,
     val reviewRepository: ReviewRepository
