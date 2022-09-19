@@ -41,7 +41,7 @@ class SecurityConfig {
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
             .antMatchers(HttpMethod.DELETE, "/menu/{menu-id}").authenticated()
             // images
-            .antMatchers(HttpMethod.POST, "/images").authenticated()
+            .antMatchers(HttpMethod.POST, "/images").permitAll()
             // review
             .antMatchers(HttpMethod.DELETE, "/review").authenticated()
             .antMatchers(HttpMethod.GET, "/review/my-review/lists").authenticated()
