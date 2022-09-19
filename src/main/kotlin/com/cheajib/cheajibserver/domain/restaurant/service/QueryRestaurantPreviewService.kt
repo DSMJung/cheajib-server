@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Service
-class QueryRestauranPreviewService(
+class QueryRestaurantPreviewService(
     val restaurantFacade: RestaurantFacade,
     val menuRepository: MenuRepository,
     val reviewRepository: ReviewRepository
@@ -26,7 +26,7 @@ class QueryRestauranPreviewService(
 
         val starAverage: Int = review.reviewPoint / 5
 
-        val mainMenuList: List<MainMenuListResponse> = menuRepository.findAllByRestaurant(restaurant)
+        val mainMenuList: List<MainMenuListResponse> = menuRepository.findTop3ByRestaurant(restaurant)
             ?.map {
                 MainMenuListResponse(
                     mainMenu = it.menuImageUrl
