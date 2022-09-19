@@ -19,7 +19,6 @@ import java.util.UUID
 @Service
 class WriteReviewService(
     private val reviewRepository: ReviewRepository,
-    private val menuRepository: MenuRepository,
     private val reviewImageRepository: ReviewImageRepository,
     private val menuLevelRepository: MenuLevelRepository,
     private val userFacade: UserFacade,
