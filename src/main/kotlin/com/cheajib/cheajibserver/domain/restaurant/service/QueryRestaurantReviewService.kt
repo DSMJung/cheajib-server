@@ -14,7 +14,7 @@ import java.util.UUID
 class QueryRestaurantReviewService(
     private val restaurantRepository: RestaurantRepository,
     private val restaurantFacade: RestaurantFacade,
-    private val reviewFacade: ReviewFacade,
+    private val reviewFacade: ReviewFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(restaurantId: UUID): QueryRestaurantReviewResponse {

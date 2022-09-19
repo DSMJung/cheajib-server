@@ -12,7 +12,7 @@ import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.jpa.impl.JPAQueryFactory
 
 class CustomRestaurantRepositoryImpl(
-    private val jpaQueryFactory: JPAQueryFactory,
+    private val jpaQueryFactory: JPAQueryFactory
 ) : CustomRestaurantRepository {
     override fun queryReview(restaurant: Restaurant): List<ReviewVO> {
         return jpaQueryFactory.select(
