@@ -21,13 +21,15 @@ class ReviewController(
     private val deleteReviewService: DeleteReviewService
 ) {
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping("/{restaurant-id}")
     fun writeReview(
+        @PathVariable("restaurant-id")
+        restaurantId: UUID,
         @Valid
         @RequestBody
         request: WriteReviewRequest
     ) {
-        writeReviewService.execute(request)
+        writeReviewService.execute(restaurantId, request)
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
