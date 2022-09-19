@@ -1,5 +1,6 @@
 package com.cheajib.cheajibserver.domain.review.facade
 
+import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.domain.Review
 import com.cheajib.cheajibserver.domain.review.exception.ReviewNotFoundException
@@ -13,5 +14,9 @@ class ReviewFacade(
 ) {
     fun getReviewById(reviewId: UUID): Review {
         return reviewRepository.findByIdOrNull(reviewId) ?: throw ReviewNotFoundException.EXCEPTION
+    }
+
+    fun getReviewByRestaurant(restaurant: Restaurant): Review {
+        return reviewRepository.findAllByRestaurant(restaurant) ?: throw ReviewNotFoundException.EXCEPTION
     }
 }
