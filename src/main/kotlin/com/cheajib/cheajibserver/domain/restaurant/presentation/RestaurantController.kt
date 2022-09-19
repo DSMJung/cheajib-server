@@ -1,6 +1,8 @@
 package com.cheajib.cheajibserver.domain.restaurant.presentation
 
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantResponse
+import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantDetailsResponse
+import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantDetailsService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantPreviewService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,6 +24,7 @@ class RestaurantController(
         restaurantId: UUID
     ): QueryRestaurantResponse {
         return queryRestaurantPreviewService.execute(restaurantId)
+    }
 
     @GetMapping("/{restaurant-id}")
     fun queryRestaurantDetails(

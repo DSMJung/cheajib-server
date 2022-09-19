@@ -5,7 +5,7 @@ import com.cheajib.cheajibserver.global.error.properties.ErrorProperty
 enum class UserErrorProperty(
     override val errorMessage: String,
     override val errorStatus: Int
-    ) : ErrorProperty {
+) : ErrorProperty {
 
     USER_NOT_FOUND("User Not Found", 404)
 }
