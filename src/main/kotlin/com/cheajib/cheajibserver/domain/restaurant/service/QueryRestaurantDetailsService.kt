@@ -3,9 +3,10 @@ package com.cheajib.cheajibserver.domain.restaurant.service
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantDetailsResponse
+import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import java.util.*
 
 @Service
 class QueryRestaurantDetailsService(
@@ -16,7 +17,11 @@ class QueryRestaurantDetailsService(
     fun execute(restaurantId: UUID): RestaurantDetailsResponse {
         val restaurant = restaurantFacade.getRestaurantById(restaurantId)
         val menu = menuFacade.getMenuByRestaurant(restaurant)
-        val menuImage = menu.menuImageUrl
+        var menuImage = restaurant.imageUrl
+
+        if (restaurant.imageUrl == DefaultImage.RESTAURANT_IMAGE) {
+            menuImage = menu.menuImageUrl
+        }
 
         return RestaurantDetailsResponse(
             restaurantName = restaurant.name,
