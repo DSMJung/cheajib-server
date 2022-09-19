@@ -32,6 +32,8 @@ class Restaurant(
     val longitude: Double,
 
     @field:NotNull
+    val mainImageUrl: String,
+
     @ColumnDefault("'default_image'")
     @field:Length(max = 255)
     val imageUrl: String,
