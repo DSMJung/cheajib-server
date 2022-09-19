@@ -8,5 +8,5 @@ import javax.persistence.MappedSuperclass
 abstract class BaseTimeEntity : BaseUUIDEntity() {
 
     @CreatedDate
-    val creatAt: LocalDateTime = LocalDateTime.now()
+    val createAt: LocalDateTime = LocalDateTime.now()
 }

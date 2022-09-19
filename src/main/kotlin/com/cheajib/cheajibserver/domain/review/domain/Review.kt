@@ -2,8 +2,9 @@ package com.cheajib.cheajibserver.domain.review.domain
 
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.user.domain.User
-import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
+import com.cheajib.cheajibserver.global.entity.BaseTimeEntity
 import org.hibernate.validator.constraints.Length
+import java.time.LocalDateTime
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -17,6 +18,8 @@ import javax.validation.constraints.NotNull
 class Review(
 
     override val id: UUID,
+
+    override val createAt: LocalDateTime,
 
     reviewPoint: Int,
 
@@ -32,7 +35,7 @@ class Review(
     @JoinColumn(name = "restaurant_id", nullable = false)
     val restaurant: Restaurant
 
-) : BaseUUIDEntity() {
+) : BaseTimeEntity() {
 
     @field:NotNull
     @field:Length(max = 5)
