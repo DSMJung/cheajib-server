@@ -1,6 +1,6 @@
-package com.cheajib.cheajibserver.domain.user.controller
+package com.cheajib.cheajibserver.domain.user.presentation
 
-import com.cheajib.cheajibserver.domain.user.controller.dto.SetVeganLevelRequest
+import com.cheajib.cheajibserver.domain.user.presentation.dto.SetVeganLevelRequest
 import com.cheajib.cheajibserver.domain.user.service.SetVeganLevelService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PatchMapping

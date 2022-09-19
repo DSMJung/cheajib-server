@@ -11,4 +11,6 @@ interface MenuRepository : CrudRepository<Menu, UUID> {
     fun findAllByRestaurant(restaurant: Restaurant): MutableList<Menu>?
 
     fun findTop3ByRestaurant(restaurant: Restaurant): MutableList<Menu>?
+    
+    fun findByRestaurantOrderById(restaurant: Restaurant): Menu?
 }

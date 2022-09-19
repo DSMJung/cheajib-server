@@ -11,7 +11,8 @@ import java.util.UUID
 
 @RequestMapping("/restaurants")
 class RestaurantController(
-    private val queryRestaurantPreviewService: QueryRestaurantPreviewService
+    private val queryRestaurantPreviewService: QueryRestaurantPreviewService,
+    private val queryRestaurantDetailsService: QueryRestaurantDetailsService
 ) {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -21,5 +22,12 @@ class RestaurantController(
         restaurantId: UUID
     ): QueryRestaurantResponse {
         return queryRestaurantPreviewService.execute(restaurantId)
+
+    @GetMapping("/{restaurant-id}")
+    fun queryRestaurantDetails(
+        @PathVariable("restaurant-id")
+        restaurantId: UUID
+    ): RestaurantDetailsResponse {
+        return queryRestaurantDetailsService.execute(restaurantId)
     }
 }
