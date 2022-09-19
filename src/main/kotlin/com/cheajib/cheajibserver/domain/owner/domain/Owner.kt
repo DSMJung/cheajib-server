@@ -1,6 +1,7 @@
 package com.cheajib.cheajibserver.domain.owner.domain
 
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
+import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
@@ -48,10 +49,6 @@ class Owner(
 
 ) : BaseUUIDEntity() {
 
-    companion object {
-        private const val DEFAULT_IMAGE: String = "a"
-    }
-
     @field:NotNull
     @field:Length(max = 255)
     var businessCard = businessCard
@@ -69,7 +66,7 @@ class Owner(
 
     fun approve() {
         this.isVerify = true
-        this.idCard = DEFAULT_IMAGE
-        this.businessCard = DEFAULT_IMAGE
+        this.idCard = DefaultImage.CARD_IMAGE
+        this.businessCard = DefaultImage.CARD_IMAGE
     }
 }

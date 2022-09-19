@@ -3,6 +3,7 @@ package com.cheajib.cheajibserver.domain.user.domain
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import com.cheajib.cheajibserver.domain.user.domain.type.Sex
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
+import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
@@ -31,7 +32,7 @@ class User(
     level: Level,
 
     @field:NotNull
-    @ColumnDefault("'default_image'")
+    @ColumnDefault(DefaultImage.PROFILE_IMAGE)
     @field:Length(max = 255)
     val profile: String,
 

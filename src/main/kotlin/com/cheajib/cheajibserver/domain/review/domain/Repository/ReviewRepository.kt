@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface ReviewRepository : CrudRepository<Review, UUID>, CustomReviewRepository
-interface ReviewRepository : CrudRepository<Review, UUID> {
+interface ReviewRepository : CrudRepository<Review, UUID>, CustomReviewRepository {
     fun findAllByRestaurant(restaurant: Restaurant): Review
 }

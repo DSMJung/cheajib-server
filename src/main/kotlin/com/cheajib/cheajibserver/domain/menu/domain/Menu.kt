@@ -2,6 +2,8 @@ package com.cheajib.cheajibserver.domain.menu.domain
 
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
+import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
+import org.hibernate.annotations.ColumnDefault
 import org.hibernate.validator.constraints.Length
 import java.util.UUID
 import javax.persistence.Entity
@@ -40,7 +42,8 @@ class Menu(
     var price = price
         protected set
 
-    @field:NotNull
+    @ColumnDefault(DefaultImage.MENU_IMAGE)
+    @field:Length(max = 255)
     var menuImageUrl = menuImageUrl
         protected set
 }

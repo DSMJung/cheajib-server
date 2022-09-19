@@ -1,6 +1,7 @@
 package com.cheajib.cheajibserver.domain.restaurant.domain
 
 import com.cheajib.cheajibserver.global.entity.BaseTimeEntity
+import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
@@ -34,9 +35,9 @@ class Restaurant(
     @field:NotNull
     val mainImageUrl: String,
 
-    @ColumnDefault("'default_image'")
+    @ColumnDefault(DefaultImage.RESTAURANT_IMAGE)
     @field:Length(max = 255)
-    val imageUrl: String,
+    var imageUrl: String,
 
     isVerify: Boolean
 
