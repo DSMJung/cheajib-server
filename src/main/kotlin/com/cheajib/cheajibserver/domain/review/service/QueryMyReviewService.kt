@@ -26,15 +26,12 @@ class QueryMyReviewService(
                         reviewPoint = it.reviewPoint,
                         content = it.content,
                         createdAt = it.createdAt,
-                        it.ownerCommentVO.let { ownerComment ->
-                            OwnerCommentResponse(
-                                ownerComment.comment,
-                                ownerComment.createAt
-                            )
-                        }
+                        ownerCommentResponse = OwnerCommentResponse(
+                            comment = it.ownerCommentVO.comment,
+                            createAt = it.ownerCommentVO.createAt
+                        )
                     )
-                }
-                .toList()
+                }.toList()
         )
     }
 }
