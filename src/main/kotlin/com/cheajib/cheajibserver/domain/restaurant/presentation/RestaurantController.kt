@@ -4,21 +4,20 @@ import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.Que
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantDetailsResponse
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantDetailsService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantPreviewService
-import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
 @RequestMapping("/restaurants")
+@RestController
 class RestaurantController(
     private val queryRestaurantPreviewService: QueryRestaurantPreviewService,
     private val queryRestaurantDetailsService: QueryRestaurantDetailsService
 ) {
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @GetMapping("/{restaurant-id}}")
+    @GetMapping("/{restaurant-id}")
     fun queryRestaurantPreview(
         @PathVariable("restaurant-id")
         restaurantId: UUID
