@@ -2,7 +2,6 @@ package com.cheajib.cheajibserver.domain.review.service
 
 import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
-import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewImageRepository
