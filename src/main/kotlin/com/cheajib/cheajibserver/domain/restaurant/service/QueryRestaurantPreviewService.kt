@@ -6,8 +6,8 @@ import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.MainMenuListResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantResponse
-import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.domain.Review
+import com.cheajib.cheajibserver.domain.review.facade.ReviewFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
@@ -15,14 +15,14 @@ import java.util.UUID
 @Service
 class QueryRestaurantPreviewService(
     val restaurantFacade: RestaurantFacade,
+    val reviewFacade: ReviewFacade,
     val menuRepository: MenuRepository,
-    val reviewRepository: ReviewRepository
 ) {
 
     @Transactional(readOnly = true)
     fun execute(restaurantId: UUID): QueryRestaurantResponse {
         val restaurant: Restaurant = restaurantFacade.getRestaurantById(restaurantId)
-        val review: Review = reviewRepository.findAllByRestaurant(restaurant)
+        val review: Review = reviewFacade.getReviewByRestaurant(restaurant)
 
         val starAverage: Int = review.reviewPoint / 5
 
