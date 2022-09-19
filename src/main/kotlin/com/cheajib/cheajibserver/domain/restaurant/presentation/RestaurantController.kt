@@ -25,7 +25,7 @@ class RestaurantController(
         return queryRestaurantPreviewService.execute(restaurantId)
     }
 
-    @GetMapping("/{restaurant-id}")
+    @GetMapping("/details/{restaurant-id}")
     fun queryRestaurantDetails(
         @PathVariable("restaurant-id")
         restaurantId: UUID
