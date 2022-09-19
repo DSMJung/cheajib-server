@@ -16,37 +16,33 @@ spring:
     property-naming-strategy: SNAKE_CASE
 
   redis:
-    port: ${REDIS_PORT}
-    host: ${REDIS_HOST}
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:localhost}
 
   main:
     allow-bean-definition-overriding: true
 
 jwt:
-  secret-key: ${JWT_SECRET}
-  access-exp: ${JWT_ACCESS_EXP}
-  refresh-exp: ${JWT_REFRESH_EXP}
-  header: ${JWT_HEADER}
-  prefix: ${JWT_PREFIX}
+  secret-key: ${JWT_SECRET:cjeajib-server-secret-key}
+  access-exp: ${JWT_ACCESS_EXP":}1209600
+  refresh-exp: ${JWT_REFRESH_EXP:1209600}
+  header: ${JWT_HEADER:Authorization}
+  prefix: ${JWT_PREFIX:Bearer }
 
 cloud:
   aws:
     credentials:
-      access-key: ${S3_ACCESS_KEY}
-      secret-key: ${S3_SECRET_KEY}
+      access-key: ${S3_ACCESS_KEY:s3_access_key}
+      secret-key: ${S3_SECRET_KEY:s3_secret_key}
     s3:
-      bucket: ${S3_BUCKET}
+      bucket: ${S3_BUCKET:s3_bucket}
     region:
-      static: ${S3_REGION}
+      static: ${S3_REGION:ap-northeast-2}
     stack:
       auto: false
 
 
 auth:
-  google:
-    client-id: ${GOOGLE_CLIENT_ID}
-    client-secret: ${GOOGLE_CLIENT_SECRET}
-    redirect-url: ${GOOGLE_REDIRECT_URL}
   naver:
     client-id: ${NAVER_CLIENT_ID}
     client-secret: ${NAVER_CLIENT_SECRET}
