@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletRequest
 class JwtTokenResolver(
     private val jwtProperty: JwtProperty
 ) {
-    fun resolveToken(httpServletRequest: HttpServletRequest): String? =
-        httpServletRequest.getHeader(jwtProperty.header)
+    fun resolveToken(httpServletRequest: HttpServletRequest): String? {
+        val bearerToken: String = httpServletRequest.getHeader(jwtProperty.header)
+        return parseToken(bearerToken)
+    }
 
     fun parseToken(token: String): String {
         if (token.startsWith(jwtProperty.prefix)) {
