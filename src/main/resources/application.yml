@@ -28,7 +28,7 @@ spring:
     allow-bean-definition-overriding: true
 
 jwt:
-  secret-key: ${JWT_SECRET:cjeajib-server-secret-key}
+  secret-key: ${JWT_SECRET:cheajib-server-secret-key}
   access-exp: ${JWT_ACCESS_EXP":1209600}
   refresh-exp: ${JWT_REFRESH_EXP:1209600}
   header: ${JWT_HEADER:Authorization}

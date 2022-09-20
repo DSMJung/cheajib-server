@@ -1,4 +1,4 @@
-package com.cheajib.cheajibserver.domain.user.presentation.dto
+package com.cheajib.cheajibserver.domain.user.presentation.dto.request
 
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import javax.validation.constraints.NotNull

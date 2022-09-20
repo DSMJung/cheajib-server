@@ -2,11 +2,13 @@ package com.cheajib.cheajibserver.domain.restaurant.presentation
 
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.MapRestaurantListResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantMapListResponse
+import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantInfoResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantReviewResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantDetailsResponse
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantDetailsService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantMapListService
+import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantInfoService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantPreviewService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantReviewService
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
@@ -24,6 +26,7 @@ class RestaurantController(
     private val queryRestaurantDetailsService: QueryRestaurantDetailsService,
     private val queryRestaurantReviewService: QueryRestaurantReviewService,
     private val queryRestaurantMapListService: QueryRestaurantMapListService
+    private val queryRestaurantInfoService: QueryRestaurantInfoService
 ) {
 
     @GetMapping("/{restaurant-id}")
@@ -62,5 +65,13 @@ class RestaurantController(
         star: Int
     ): QueryRestaurantMapListResponse {
         return queryRestaurantMapListService.execute(x, y, level, star)
+    }
+    
+    @GetMapping("/info/{restaurant-id}")
+    fun queryRestaurantInfo(
+        @PathVariable("restaurant-id")
+        restaurantId: UUID
+    ): QueryRestaurantInfoResponse {
+        return queryRestaurantInfoService.execute(restaurantId)
     }
 }

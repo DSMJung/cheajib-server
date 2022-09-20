@@ -30,6 +30,12 @@ class Restaurant(
     @field: NotNull
     val coordinates: Point,
 
+    @field: NotNull
+    val phoneNumber: String,
+
+    @field: NotNull
+    val openHours: String,
+
     @field:NotNull
     val mainImageUrl: String,
 

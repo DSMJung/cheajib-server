@@ -1,44 +1,51 @@
 package com.cheajib.cheajibserver.global.security
 
+import com.cheajib.cheajibserver.global.security.jwt.JwtTokenProvider
+import com.cheajib.cheajibserver.global.security.jwt.JwtTokenResolver
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.web.cors.CorsUtils
 
 @EnableWebSecurity
-class SecurityConfig {
+class SecurityConfig(
+    private val jwtTokenResolver: JwtTokenResolver,
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val objectMapper: ObjectMapper
+) {
     @Throws(Exception::class)
     @Bean
-    fun configure(http: HttpSecurity): SecurityFilterChain {
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .csrf().disable()
             .formLogin().disable()
-            .cors()
-
-            .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and().cors()
 
-            .and()
+        http
             .authorizeRequests()
-            .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
             // users
             .antMatchers(HttpMethod.PATCH, "/users/level").authenticated()
             .antMatchers(HttpMethod.POST, "/users").permitAll()
             .antMatchers(HttpMethod.POST, "/users/token").permitAll()
             .antMatchers(HttpMethod.GET, "/naver/redirect").permitAll()
+            .antMatchers(HttpMethod.GET, "/users/level").authenticated()
+            .antMatchers(HttpMethod.GET, "/users").authenticated()
 
             // restaurants
             .antMatchers(HttpMethod.GET, "/restaurant/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/details/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/menu").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/reviews").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurant/reviews/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/lists/map").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/lists").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurant/info/{restaurant-id}").authenticated()
+
 
             // menu
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
@@ -60,6 +67,7 @@ class SecurityConfig {
             .antMatchers(HttpMethod.POST, "/comments").authenticated()
 
             .anyRequest().authenticated()
+            .and().apply(FilterConfig(jwtTokenResolver, jwtTokenProvider, objectMapper))
 
         return http.build()
     }
