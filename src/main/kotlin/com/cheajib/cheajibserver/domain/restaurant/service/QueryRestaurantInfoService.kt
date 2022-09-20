@@ -16,10 +16,10 @@ class QueryRestaurantInfoService(
         val restaurant: Restaurant = restaurantFacade.getRestaurantById(restaurantId)
 
         return QueryRestaurantInfoResponse(
-            restaurant.phoneNumber,
-            restaurant.openHours,
-            restaurant.latitude,
-            restaurant.longitude
+            phoneNumber = restaurant.phoneNumber,
+            openHours = restaurant.openHours,
+            latitude = restaurant.latitude,
+            longitude = restaurant.longitude
         )
     }
 }
