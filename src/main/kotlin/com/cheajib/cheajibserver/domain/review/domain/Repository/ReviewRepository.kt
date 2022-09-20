@@ -8,5 +8,5 @@ import java.util.UUID
 
 @Repository
 interface ReviewRepository : CrudRepository<Review, UUID>, CustomReviewRepository {
-    fun findAllByRestaurant(restaurant: Restaurant): Review
+    fun findAllByRestaurant(restaurant: Restaurant): Review?
 }
