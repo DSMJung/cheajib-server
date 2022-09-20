@@ -1,7 +1,6 @@
 package com.cheajib.cheajibserver.domain.restaurant.service
 
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
-import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantInfoResponse
 import org.springframework.stereotype.Service
