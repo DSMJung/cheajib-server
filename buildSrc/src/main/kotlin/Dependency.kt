@@ -47,4 +47,11 @@ object Dependency {
 
     // property
     const val PROPERTIES_SCAN = "org.springframework.boot:spring-boot-configuration-processor"
+
+    // test
+    const val SPRING_TEST = "org.springframework.boot:spring-boot-starter-test:${PluginVersions.SPRING_BOOT_FRAMEWORK_VERSION}"
+
+    // hibernate
+    const val HIBERNATE_SPATIAL = "org.hibernate:hibernate-spatial:6.1.3.Final"
+
 }
