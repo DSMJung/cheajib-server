@@ -31,6 +31,8 @@ class SecurityConfig {
             .antMatchers(HttpMethod.POST, "/users").permitAll()
             .antMatchers(HttpMethod.POST, "/users/token").permitAll()
             .antMatchers(HttpMethod.GET, "/naver/redirect").permitAll()
+            .antMatchers(HttpMethod.GET, "/users/level").authenticated()
+            .antMatchers(HttpMethod.GET, "/users").authenticated()
 
             // restaurants
             .antMatchers(HttpMethod.GET, "/restaurant/{restaurant-id}").authenticated()
