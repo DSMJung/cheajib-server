@@ -62,6 +62,7 @@ class SecurityConfig(
             // owner
             .antMatchers(HttpMethod.POST, "/owner").authenticated()
             .antMatchers(HttpMethod.PATCH, "/owner").authenticated()
+            .antMatchers(HttpMethod.GET, "/owner/{owner-id}").authenticated()
 
             // comments
             .antMatchers(HttpMethod.POST, "/comments").authenticated()
