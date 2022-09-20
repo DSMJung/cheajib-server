@@ -20,6 +20,7 @@ class ExceptionFilter(
         try {
             filterChain.doFilter(request, response)
         } catch (exception: Exception) {
+            exception.printStackTrace()
             when (exception) {
                 is GlobalException -> writeErrorCode(exception, response)
                 else -> writeErrorCode(InternalServerError, response)
