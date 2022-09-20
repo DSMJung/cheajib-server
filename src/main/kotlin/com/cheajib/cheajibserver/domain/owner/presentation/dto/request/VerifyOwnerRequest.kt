@@ -34,7 +34,7 @@ data class VerifyOwnerRequest(
     val phoneNumber: String,
 
     @field:NotBlank
-    val isCard: String,
+    val idCard: String,
 
     @field:NotBlank
     val businessCard: String

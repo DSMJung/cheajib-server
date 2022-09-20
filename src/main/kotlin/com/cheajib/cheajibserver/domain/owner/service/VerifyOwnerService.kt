@@ -24,7 +24,7 @@ class VerifyOwnerService(
             ownerName = request.ownerName,
             birthDate = request.birthDate,
             phoneNumber = request.phoneNumber,
-            idCard = request.isCard,
+            idCard = request.idCard,
             businessCard = request.businessCard,
             isVerify = false
         )
