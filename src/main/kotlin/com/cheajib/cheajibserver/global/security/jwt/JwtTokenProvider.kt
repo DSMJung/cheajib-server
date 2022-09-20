@@ -9,17 +9,11 @@ import com.cheajib.cheajibserver.global.security.jwt.exception.SignatureTokenExc
 import com.cheajib.cheajibserver.global.security.jwt.exception.UnexpectedTokenException
 import com.cheajib.cheajibserver.global.security.jwt.properties.JwtProperty
 import com.cheajib.cheajibserver.infrastructure.feign.dto.response.TokenResponse
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.ExpiredJwtException
-import io.jsonwebtoken.SignatureException
-import io.jsonwebtoken.MalformedJwtException
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.*
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
-import java.time.LocalDateTime
 import java.util.Date
 
 @Component
@@ -53,11 +47,11 @@ class JwtTokenProvider(
 
     private fun generateToken(email: String, expiration: Long, type: String): String {
         return "Bearer " + Jwts.builder()
+            .signWith(SignatureAlgorithm.HS256, jwtProperty.secretKey)
             .setSubject(email)
+            .setHeaderParam("type", type)
             .setIssuedAt(Date())
-            .signWith(SignatureAlgorithm.HS512, jwtProperty.secretKey)
             .setExpiration(Date(System.currentTimeMillis() + expiration * 1000))
-            .setHeaderParam("typ", type)
             .compact()
     }
 
@@ -85,9 +79,5 @@ class JwtTokenProvider(
                 else -> throw UnexpectedTokenException.EXCEPTION
             }
         }
-    }
-
-    fun getExpiredTime(): LocalDateTime? {
-        return LocalDateTime.now().plusSeconds(jwtProperty.refreshExp)
     }
 }
