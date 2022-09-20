@@ -44,6 +44,8 @@ dependencies {
     runtimeOnly(Dependency.MYSQL)
     implementation(Dependency.OPENFEIGN)
     implementation(Dependency.JWT)
+    implementation(Dependency.HIBERNATE_SPATIAL)
+    testImplementation(Dependency.SPRING_TEST)
 
 }
 
