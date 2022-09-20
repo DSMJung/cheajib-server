@@ -38,9 +38,11 @@ class SecurityConfig {
             .antMatchers(HttpMethod.GET, "/restaurant/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/details/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/menu").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/reviews").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurant/reviews/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/lists/map").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/lists").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurant/info/{restaurant-id}").authenticated()
+
 
             // menu
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
