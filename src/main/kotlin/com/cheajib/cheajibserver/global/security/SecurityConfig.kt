@@ -25,11 +25,13 @@ class SecurityConfig {
             .and()
             .authorizeRequests()
             .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+
             // users
             .antMatchers(HttpMethod.PATCH, "/users/level").authenticated()
             .antMatchers(HttpMethod.POST, "/users").permitAll()
             .antMatchers(HttpMethod.POST, "/users/token").permitAll()
             .antMatchers(HttpMethod.GET, "/naver/redirect").permitAll()
+
             // restaurants
             .antMatchers(HttpMethod.GET, "/restaurant/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/details/{restaurant-id}").authenticated()
@@ -37,20 +39,27 @@ class SecurityConfig {
             .antMatchers(HttpMethod.GET, "/restaurant/reviews").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/lists/map").authenticated()
             .antMatchers(HttpMethod.GET, "/restaurant/lists").authenticated()
+
             // menu
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
             .antMatchers(HttpMethod.DELETE, "/menu/{menu-id}").authenticated()
+
             // images
             .antMatchers(HttpMethod.POST, "/images").permitAll()
+
             // review
             .antMatchers(HttpMethod.DELETE, "/review").authenticated()
             .antMatchers(HttpMethod.GET, "/review/my-review/lists").authenticated()
             .antMatchers(HttpMethod.POST, "/review").authenticated()
+
             // owner
             .antMatchers(HttpMethod.POST, "/owner").authenticated()
             .antMatchers(HttpMethod.PATCH, "/owner").authenticated()
+
             // comments
             .antMatchers(HttpMethod.POST, "/comments").authenticated()
+
+            .anyRequest().authenticated()
 
         return http.build()
     }
