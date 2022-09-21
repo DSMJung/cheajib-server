@@ -7,7 +7,6 @@ import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantR
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantMapListResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantMapResponse
-import com.cheajib.cheajibserver.domain.review.facade.ReviewFacade
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,11 +25,17 @@ class QueryRestaurantMapService(
         level: Level,
         star: Int
     ): QueryRestaurantMapListResponse {
+
+        val restaurantList = restaurantRepository.findAllRestaurant(x, y)
+
+        for (restaurant in restaurantList) {
+            if (!restaurantFacade.filter(restaurant, star, level)) {
+                continue
+            }
+        }
+
         return QueryRestaurantMapListResponse(
-            restaurantsList = restaurantRepository.findAllRestaurant(x, y)
-                .filter {
-                    restaurantFacade.filter(it, star, level)
-                }
+            restaurantsList = restaurantList
                 .map {
                     RestaurantMapResponse(
                         id = it.id,
@@ -39,7 +44,7 @@ class QueryRestaurantMapService(
                         latitude = it.latitude,
                         longitude = it.longitude
                     )
-                }.toList()
+                }
         )
     }
 
