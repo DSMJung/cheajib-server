@@ -38,9 +38,6 @@ class Restaurant(
     @field: NotNull
     val openHours: String,
 
-    @field:NotNull
-    val mainImageUrl: String,
-
     @ColumnDefault(DefaultImage.RESTAURANT_IMAGE)
     @field:Length(max = 255)
     var imageUrl: String,

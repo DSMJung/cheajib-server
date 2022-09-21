@@ -26,19 +26,14 @@ class QueryRestaurantPreviewService(
 
         val starAverage: Int = review.reviewPoint / 5
 
-        val mainMenuList: List<MainMenuListResponse> = menuRepository.findTop3ByRestaurant(restaurant)
-            ?.map {
-                MainMenuListResponse(
-                    mainMenu = it.menuImageUrl
-                )
-            }?.toList() ?: throw MenuNotFoundException.EXCEPTION
+        val mainMenu = menuRepository.findTop1ByRestaurant(restaurant) ?: throw MenuNotFoundException.EXCEPTION
 
         return QueryRestaurantResponse(
             restaurantName = restaurant.name,
             address = restaurant.address,
             starPoint = starAverage,
-            mainImageUrl = restaurant.mainImageUrl,
-            mainMenuList = mainMenuList,
+            imageUrl = restaurant.imageUrl,
+            mainMenuList = mainMenu.name,
             isVerify = restaurant.isVerify
         )
     }
