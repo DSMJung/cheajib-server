@@ -38,14 +38,13 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/users").authenticated()
 
             // restaurants
-            .antMatchers(HttpMethod.GET, "/restaurant/{restaurant-id}").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/details/{restaurant-id}").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/menu").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/reviews/{restaurant-id}").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/lists/map").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/lists").authenticated()
-            .antMatchers(HttpMethod.GET, "/restaurant/info/{restaurant-id}").authenticated()
-
+            .antMatchers(HttpMethod.GET, "/restaurants/{restaurant-id}").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurants/details/{restaurant-id}").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurants/menu").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurants/reviews/{restaurant-id}").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurants/lists/map").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurants/lists").authenticated()
+            .antMatchers(HttpMethod.GET, "/restaurants/info/{restaurant-id}").authenticated()
 
             // menu
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
