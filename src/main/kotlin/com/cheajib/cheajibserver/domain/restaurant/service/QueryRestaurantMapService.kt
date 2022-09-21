@@ -28,38 +28,33 @@ class QueryRestaurantMapService(
         star: Int
     ): QueryRestaurantMapListResponse {
         val restaurantList = restaurantRepository.findAllRestaurant(x, y)
+        var menuLevel = Level.FLEXITARIAN
+/*
+        for (restaurant in restaurantList) {
+             if (menuRepository.existsByRestaurant(restaurant)) {
+                 val menu = menuRepository.findTop1ByRestaurant(restaurant)
+                 menuLevel = menuLevelRepository.findByMenu(menu).id.level
+             }
 
+             *//*if (!restaurantFacade.filter(restaurant, star, level)) {
+                continue
+            }*//*
+
+        }*/
         return QueryRestaurantMapListResponse(
             restaurantsList = restaurantRepository.findAllRestaurant(x, y)
                 .map {
                     RestaurantMapResponse(
                         id = it.id,
                         name = it.name,
-                        level = Level.FLEXITARIAN
+                        level = menuLevel,
+                        latitude = it.latitude,
+                        longitude = it.longitude
                     )
                 }.toList()
         )
-        /* for (restaurant in restaurantList) {
-             var menuLevel = Level.FLEXITARIAN
+    }
+    private fun getMenuLevel(): Level {
 
-             if (menuRepository.existsByRestaurant(restaurant)) {
-                 val menu = menuRepository.findTop1ByRestaurant(restaurant)
-                 menuLevel = menuLevelRepository.findByMenu(menu).id.level
-             }
-
-            *//* if (!restaurantFacade.filter(restaurant, star, level)) {
-                continue
-            }*//*
-
-            return QueryRestaurantMapListResponse(
-                RestaurantMapResponse(
-                    id = restaurant.id,
-                    name = restaurant.name,
-                    level = menuLevel
-                )
-            )
-
-        }
-        return throw RestaurantNotFoundException.EXCEPTION*/
     }
 }
