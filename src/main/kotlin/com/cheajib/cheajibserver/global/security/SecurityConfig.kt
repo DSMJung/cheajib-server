@@ -49,6 +49,7 @@ class SecurityConfig(
             // menu
             .antMatchers(HttpMethod.POST, "/menu").authenticated()
             .antMatchers(HttpMethod.DELETE, "/menu/{menu-id}").authenticated()
+            .antMatchers(HttpMethod.GET, "/menu/lists").authenticated()
 
             // images
             .antMatchers(HttpMethod.POST, "/images").permitAll()
@@ -61,6 +62,7 @@ class SecurityConfig(
             // owner
             .antMatchers(HttpMethod.POST, "/owner").authenticated()
             .antMatchers(HttpMethod.PATCH, "/owner").authenticated()
+            .antMatchers(HttpMethod.GET, "/owner/{owner-id}").authenticated()
 
             // comments
             .antMatchers(HttpMethod.POST, "/comments").authenticated()

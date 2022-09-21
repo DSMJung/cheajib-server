@@ -26,6 +26,7 @@ class QueryMyReviewService(
                         reviewPoint = it.reviewPoint,
                         content = it.content,
                         createdAt = it.createdAt,
+                        imageList = it.imageList,
                         ownerCommentResponse = OwnerCommentResponse(
                             comment = it.ownerCommentVO.comment,
                             createAt = it.ownerCommentVO.createAt
