@@ -18,7 +18,7 @@ class QueryMyReviewService(
     fun execute(): MyReviewListResponse {
         val user: User = userFacade.getCurrentUser()
         return MyReviewListResponse(
-            reviewRepository.queryMyReview(user)
+            myReviewList = reviewRepository.queryMyReview(user)
                 .map {
                     MyReviewResponse(
                         restaurantName = it.restaurantName,
