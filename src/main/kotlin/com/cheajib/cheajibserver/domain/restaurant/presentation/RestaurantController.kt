@@ -1,6 +1,5 @@
 package com.cheajib.cheajibserver.domain.restaurant.presentation
 
-import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantInfoResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantListResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantMapListResponse
@@ -88,7 +87,7 @@ class RestaurantController(
         level: Level,
         @RequestParam(value = "star")
         star: Int
-    ): List<Restaurant> {
+    ): QueryRestaurantMapListResponse {
         return queryRestaurantMapService.execute(x, y, level, star)
     }
 }
