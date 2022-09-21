@@ -67,7 +67,7 @@ class SecurityConfig(
             // comments
             .antMatchers(HttpMethod.POST, "/comments").authenticated()
 
-            .anyRequest().authenticated()
+            .anyRequest().permitAll()
             .and().apply(FilterConfig(jwtTokenResolver, jwtTokenProvider, objectMapper))
 
         return http.build()
