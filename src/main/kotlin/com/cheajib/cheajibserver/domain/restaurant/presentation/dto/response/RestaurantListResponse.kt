@@ -1,10 +1,13 @@
 package com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response
 
-data class QueryRestaurantResponse(
-    val restaurantName: String,
+import java.util.UUID
+
+data class RestaurantListResponse(
+    val id: UUID,
+    val name: String,
     val address: String,
-    val starPoint: Int,
+    val starPoint: Double,
+    val mainMenu: String,
     val imageUrl: String,
-    val mainMenuList: String,
     val isVerify: Boolean
 )
