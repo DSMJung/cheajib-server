@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class OauthController(
     private val naverOauthService: NaverOauthService
 ) {
-    @GetMapping("/naver/redirect")
+    @GetMapping("/auth")
     fun getNaverCode(@RequestParam code: String): TokenResponse {
         return naverOauthService.getCode(code)
     }

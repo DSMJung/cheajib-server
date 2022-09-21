@@ -33,7 +33,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.PATCH, "/users/level").authenticated()
             .antMatchers(HttpMethod.POST, "/users").permitAll()
             .antMatchers(HttpMethod.POST, "/users/token").permitAll()
-            .antMatchers(HttpMethod.GET, "/naver/redirect").permitAll()
+            .antMatchers(HttpMethod.GET, "/auth").permitAll()
             .antMatchers(HttpMethod.GET, "/users/level").authenticated()
             .antMatchers(HttpMethod.GET, "/users").authenticated()
 
