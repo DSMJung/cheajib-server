@@ -6,7 +6,7 @@ import com.cheajib.cheajibserver.domain.review.domain.Review
 import com.cheajib.cheajibserver.domain.review.exception.ReviewNotFoundException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
-import java.util.UUID
+import java.util.*
 
 @Component
 class ReviewFacade(
@@ -16,7 +16,7 @@ class ReviewFacade(
         return reviewRepository.findByIdOrNull(reviewId) ?: throw ReviewNotFoundException.EXCEPTION
     }
 
-    fun getReviewByRestaurant(restaurant: Restaurant): Review {
+    fun getReviewByRestaurant(restaurant: Restaurant): List<Review> {
         return reviewRepository.findAllByRestaurant(restaurant) ?: throw ReviewNotFoundException.EXCEPTION
     }
 }

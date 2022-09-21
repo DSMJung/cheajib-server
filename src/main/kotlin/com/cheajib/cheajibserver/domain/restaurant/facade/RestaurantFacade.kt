@@ -29,8 +29,12 @@ class RestaurantFacade(
         var starPoint = 5.0
 
         if (reviewRepository.existsByRestaurant(restaurant)) {
-            val review = reviewFacade.getReviewByRestaurant(restaurant)
-            starPoint = review.reviewPoint / 5.0
+            val reviewList = reviewFacade.getReviewByRestaurant(restaurant)
+            var sum = 0
+            for (review in reviewList) {
+                sum += review.reviewPoint
+            }
+            starPoint = (sum / reviewList.size).toDouble()
         }
 
         if (menuRepository.existsByRestaurant(restaurant)) {
