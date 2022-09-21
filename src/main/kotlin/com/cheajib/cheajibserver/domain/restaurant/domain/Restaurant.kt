@@ -5,6 +5,7 @@ import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.validator.constraints.Length
+import org.locationtech.jts.geom.Point
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -27,10 +28,7 @@ class Restaurant(
     val address: String,
 
     @field: NotNull
-    val latitude: Double,
-
-    @field: NotNull
-    val longitude: Double,
+    val coordinates: Point,
 
     @field: NotNull
     val phoneNumber: String,
