@@ -2,10 +2,10 @@ package com.cheajib.cheajibserver.domain.restaurant.facade
 
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
-import com.cheajib.cheajibserver.domain.menu.exception.MenuNotFoundException
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.exception.RestaurantNotFoundException
+import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.facade.ReviewFacade
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import org.springframework.data.repository.findByIdOrNull
@@ -17,18 +17,26 @@ class RestaurantFacade(
     private val restaurantRepository: RestaurantRepository,
     private val menuRepository: MenuRepository,
     private val menuLevelRepository: MenuLevelRepository,
-    private val reviewFacade: ReviewFacade
+    private val reviewFacade: ReviewFacade,
+    private val reviewRepository: ReviewRepository
 ) {
     fun getRestaurantById(id: UUID): Restaurant {
         return restaurantRepository.findByIdOrNull(id) ?: throw RestaurantNotFoundException.EXCEPTION
     }
 
     fun filter(restaurant: Restaurant, star: Int, level: Level): Boolean {
-        val review = reviewFacade.getReviewByRestaurant(restaurant)
-        val starPoint = review.reviewPoint / 5.0
+        var menuLevel = Level.FLEXITARIAN
+        var starPoint = 5.0
 
-        val menu = menuRepository.findTop1ByRestaurant(restaurant) ?: throw MenuNotFoundException.EXCEPTION
-        val menuLevel = menuLevelRepository.findByMenu(menu)
+        if (reviewRepository.existsByRestaurant(restaurant)) {
+            val review = reviewFacade.getReviewByRestaurant(restaurant)
+            starPoint = review.reviewPoint / 5.0
+        }
+
+        if (menuRepository.existsByRestaurant(restaurant)) {
+            val menu = menuRepository.findTop1ByRestaurant(restaurant)
+            menuLevel = menuLevelRepository.findByMenu(menu).id.level
+        }
 
         if (starPoint < star) {
             return false
@@ -36,32 +44,32 @@ class RestaurantFacade(
 
         when {
             level.name == Level.VEGAN.name ||
-                    menuLevel.id.level.name == Level.LACTO.name ||
-                    menuLevel.id.level.name == Level.LACTO_OVO.name ||
-                    menuLevel.id.level.name == Level.PESCO.name ||
-                    menuLevel.id.level.name == Level.POLLO.name ||
-                    menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
+                    menuLevel.name == Level.LACTO.name ||
+                    menuLevel.name == Level.LACTO_OVO.name ||
+                    menuLevel.name == Level.PESCO.name ||
+                    menuLevel.name == Level.POLLO.name ||
+                    menuLevel.name == Level.FLEXITARIAN.name -> {
                 return false
             }
             level.name == Level.LACTO.name ||
-                    menuLevel.id.level.name == Level.LACTO_OVO.name ||
-                    menuLevel.id.level.name == Level.PESCO.name ||
-                    menuLevel.id.level.name == Level.POLLO.name ||
-                    menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
+                    menuLevel.name == Level.LACTO_OVO.name ||
+                    menuLevel.name == Level.PESCO.name ||
+                    menuLevel.name == Level.POLLO.name ||
+                    menuLevel.name == Level.FLEXITARIAN.name -> {
                 return false
             }
             level.name == Level.LACTO_OVO.name ||
-                    menuLevel.id.level.name == Level.PESCO.name ||
-                    menuLevel.id.level.name == Level.POLLO.name ||
-                    menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
+                    menuLevel.name == Level.PESCO.name ||
+                    menuLevel.name == Level.POLLO.name ||
+                    menuLevel.name == Level.FLEXITARIAN.name -> {
                 return false
             }
             level.name == Level.PESCO.name ||
-                    menuLevel.id.level.name == Level.POLLO.name ||
-                    menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
+                    menuLevel.name == Level.POLLO.name ||
+                    menuLevel.name == Level.FLEXITARIAN.name -> {
                 return false
             }
-            level.name == Level.POLLO.name || menuLevel.id.level.name == Level.FLEXITARIAN.name ->
+            level.name == Level.POLLO.name || menuLevel.name == Level.FLEXITARIAN.name ->
                 return false
         }
         return true
