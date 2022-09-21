@@ -5,6 +5,6 @@ data class QueryRestaurantResponse(
     val address: String,
     val starPoint: Double,
     val imageUrl: String,
-    val mainMenuList: String,
+    val mainMenu: String,
     val isVerify: Boolean
 )
