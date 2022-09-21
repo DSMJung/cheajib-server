@@ -54,7 +54,4 @@ class QueryRestaurantMapService(
                 }.toList()
         )
     }
-    private fun getMenuLevel(): Level {
-
-    }
 }
