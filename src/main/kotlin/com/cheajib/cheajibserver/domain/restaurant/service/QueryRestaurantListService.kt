@@ -43,32 +43,36 @@ class QueryRestaurantListService(
 
             when {
                 level.name == Level.VEGAN.name ||
-                        menuLevel.level.name == Level.LACTO.name ||
-                        menuLevel.level.name == Level.LACTO_OVO.name ||
-                        menuLevel.level.name == Level.PESCO.name ||
-                        menuLevel.level.name == Level.POLLO.name ||
-                        menuLevel.level.name == Level.FLEXITARIAN.name -> {
+                        menuLevel.id.level.name == Level.LACTO.name ||
+                        menuLevel.id.level.name == Level.LACTO_OVO.name ||
+                        menuLevel.id.level.name == Level.PESCO.name ||
+                        menuLevel.id.level.name == Level.POLLO.name ||
+                        menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
                     continue
                 }
+
                 level.name == Level.LACTO.name ||
-                        menuLevel.level.name == Level.LACTO_OVO.name ||
-                        menuLevel.level.name == Level.PESCO.name ||
-                        menuLevel.level.name == Level.POLLO.name ||
-                        menuLevel.level.name == Level.FLEXITARIAN.name -> {
+                        menuLevel.id.level.name == Level.LACTO_OVO.name ||
+                        menuLevel.id.level.name == Level.PESCO.name ||
+                        menuLevel.id.level.name == Level.POLLO.name ||
+                        menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
                     continue
                 }
+
                 level.name == Level.LACTO_OVO.name ||
-                        menuLevel.level.name == Level.PESCO.name ||
-                        menuLevel.level.name == Level.POLLO.name ||
-                        menuLevel.level.name == Level.FLEXITARIAN.name -> {
+                        menuLevel.id.level.name == Level.PESCO.name ||
+                        menuLevel.id.level.name == Level.POLLO.name ||
+                        menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
                     continue
                 }
+
                 level.name == Level.PESCO.name ||
-                        menuLevel.level.name == Level.POLLO.name ||
-                        menuLevel.level.name == Level.FLEXITARIAN.name -> {
+                        menuLevel.id.level.name == Level.POLLO.name ||
+                        menuLevel.id.level.name == Level.FLEXITARIAN.name -> {
                     continue
                 }
-                level.name == Level.POLLO.name || menuLevel.level.name == Level.FLEXITARIAN.name ->
+
+                level.name == Level.POLLO.name || menuLevel.id.level.name == Level.FLEXITARIAN.name ->
                     continue
             }
 

@@ -1,40 +1,29 @@
 package com.cheajib.cheajibserver.domain.menu.domain
 
-import com.cheajib.cheajibserver.domain.user.domain.type.Level
-import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
-import org.hibernate.annotations.ColumnDefault
-import java.util.UUID
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.FetchType
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
-import javax.persistence.MapsId
-import javax.persistence.Table
+import java.io.Serializable
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_menu_level")
 class MenuLevel(
-    @Id
-    override val id: UUID,
 
-    @MapsId
+    @EmbeddedId
+    val id: MenuLevelId,
+
+    @MapsId("id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     val menu: Menu,
 
-    level: Level,
+    levelCount: Int
 
+) : Serializable {
     @field:NotNull
-    val levelCount: Int
-
-) : BaseUUIDEntity() {
-    @field:NotNull
-    @ColumnDefault("'0'")
-    @Enumerated(EnumType.STRING)
-    var level = level
+    var levelCount = levelCount
         protected set
+
+    fun plusLevelCount() {
+        this.levelCount += 1
+    }
 }

@@ -47,7 +47,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/restaurants/info/{restaurant-id}").authenticated()
 
             // menu
-            .antMatchers(HttpMethod.POST, "/menu").authenticated()
+            .antMatchers(HttpMethod.POST, "/menu/{restaurant-id}").authenticated()
             .antMatchers(HttpMethod.DELETE, "/menu/{menu-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/menu/lists").authenticated()
 

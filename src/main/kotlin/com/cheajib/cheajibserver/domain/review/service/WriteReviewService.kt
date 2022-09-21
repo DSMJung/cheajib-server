@@ -1,19 +1,20 @@
 package com.cheajib.cheajibserver.domain.review.service
 
 import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
+import com.cheajib.cheajibserver.domain.menu.domain.MenuLevelId
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
-import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewImageRepository
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.domain.Review
 import com.cheajib.cheajibserver.domain.review.domain.ReviewImage
+import com.cheajib.cheajibserver.domain.review.domain.ReviewImageId
 import com.cheajib.cheajibserver.domain.review.presentation.dto.request.WriteReviewRequest
 import com.cheajib.cheajibserver.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 @Service
 class WriteReviewService(
@@ -21,7 +22,6 @@ class WriteReviewService(
     private val reviewImageRepository: ReviewImageRepository,
     private val menuLevelRepository: MenuLevelRepository,
     private val userFacade: UserFacade,
-    private val menuFacade: MenuFacade,
     private val restaurantFacade: RestaurantFacade
 ) {
     @Transactional
@@ -30,19 +30,14 @@ class WriteReviewService(
         val restaurant = restaurantFacade.getRestaurantById(restaurantId)
 
         for (menuElement in request.menuList) {
-            val menu = menuFacade.getMenuById(menuElement.menuId)
-
-            val menuLevel = MenuLevel(
-                id = menu.id,
-                menu = menu,
-                level = menuElement.level,
-                levelCount = 0
+            val menuLevel: MenuLevel? = menuLevelRepository.findById(
+                MenuLevelId(id = menuElement.menuId, level = menuElement.level)
             )
-            menuLevelRepository.save(menuLevel)
+            menuLevel?.plusLevelCount()
         }
 
         val review = Review(
-            id = UUID(0, 0),
+            id = UUID.randomUUID(),
             createAt = LocalDateTime.now(),
             reviewPoint = request.reviewPoint,
             content = request.content,
@@ -52,12 +47,17 @@ class WriteReviewService(
         reviewRepository.save(review)
 
         for (image in request.imageUrl) {
+            var i = 1
             val reviewImage = ReviewImage(
-                id = UUID(0, 0),
+                id = ReviewImageId(
+                    sequence = i,
+                    id = review.id
+                ),
                 imageUrl = image,
                 review = review
             )
             reviewImageRepository.save(reviewImage)
+            i += 1
         }
     }
 }

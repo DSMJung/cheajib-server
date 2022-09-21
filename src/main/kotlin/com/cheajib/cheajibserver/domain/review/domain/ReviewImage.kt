@@ -1,27 +1,22 @@
 package com.cheajib.cheajibserver.domain.review.domain
 
-import com.cheajib.cheajibserver.global.entity.BaseUUIDEntity
-import java.util.UUID
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
-import javax.persistence.MapsId
-import javax.persistence.Table
+import java.io.Serializable
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_review_image")
 class ReviewImage(
 
-    override val id: UUID,
+    @EmbeddedId
+    val id: ReviewImageId,
 
     @field:NotNull
     val imageUrl: String,
 
-    @MapsId
+    @MapsId("id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", nullable = false)
     val review: Review
 
-) : BaseUUIDEntity()
+) : Serializable
