@@ -16,7 +16,11 @@ class ReviewFacade(
         return reviewRepository.findByIdOrNull(reviewId) ?: throw ReviewNotFoundException.EXCEPTION
     }
 
-    fun getReviewByRestaurant(restaurant: Restaurant): List<Review> {
+    fun getAllReviewByRestaurant(restaurant: Restaurant): List<Review> {
         return reviewRepository.findAllByRestaurant(restaurant) ?: throw ReviewNotFoundException.EXCEPTION
+    }
+
+    fun getReviewByRestaurant(restaurant: Restaurant): Review {
+        return reviewRepository.findByRestaurant(restaurant) ?: throw ReviewNotFoundException.EXCEPTION
     }
 }

@@ -20,7 +20,7 @@ class QueryRestaurantPreviewService(
     @Transactional(readOnly = true)
     fun execute(restaurantId: UUID): QueryRestaurantResponse {
         val restaurant: Restaurant = restaurantFacade.getRestaurantById(restaurantId)
-        val reviewList = reviewFacade.getReviewByRestaurant(restaurant)
+        val reviewList = reviewFacade.getAllReviewByRestaurant(restaurant)
 
         var sum = 0
         for (review in reviewList) {
