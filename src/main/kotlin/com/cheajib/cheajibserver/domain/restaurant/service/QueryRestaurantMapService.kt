@@ -2,6 +2,7 @@ package com.cheajib.cheajibserver.domain.restaurant.service
 
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
+import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.exception.RestaurantNotFoundException
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
@@ -27,10 +28,10 @@ class QueryRestaurantMapService(
         y: Double,
         level: Level,
         star: Int
-    ): QueryRestaurantMapListResponse {
+    ): List<Restaurant> {
         val restaurantList = restaurantRepository.findAllRestaurant(x, y)
 
-        for (restaurant in restaurantList) {
+       /* for (restaurant in restaurantList) {
             var menuLevel = Level.FLEXITARIAN
 
             if (menuRepository.existsByRestaurant(restaurant)) {
@@ -50,6 +51,6 @@ class QueryRestaurantMapService(
                 )
             )
         }
-        return throw RestaurantNotFoundException.EXCEPTION
+*/        return restaurantList
     }
 }
