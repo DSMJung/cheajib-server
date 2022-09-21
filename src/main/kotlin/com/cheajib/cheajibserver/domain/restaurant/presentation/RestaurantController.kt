@@ -2,12 +2,14 @@ package com.cheajib.cheajibserver.domain.restaurant.presentation
 
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantInfoResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantListResponse
+import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantMapListResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantReviewResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantDetailsResponse
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantDetailsService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantInfoService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantListService
+import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantMapService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantPreviewService
 import com.cheajib.cheajibserver.domain.restaurant.service.QueryRestaurantReviewService
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import java.util.UUID
+import java.util.*
 
 @RequestMapping("/restaurants")
 @RestController
@@ -25,7 +27,8 @@ class RestaurantController(
     private val queryRestaurantDetailsService: QueryRestaurantDetailsService,
     private val queryRestaurantReviewService: QueryRestaurantReviewService,
     private val queryRestaurantInfoService: QueryRestaurantInfoService,
-    private val queryRestaurantListService: QueryRestaurantListService
+    private val queryRestaurantListService: QueryRestaurantListService,
+    private val queryRestaurantMapService: QueryRestaurantMapService
 ) {
 
     @GetMapping("/{restaurant-id}")
@@ -70,7 +73,21 @@ class RestaurantController(
         level: Level,
         @RequestParam(value = "star")
         star: Int
-        ): QueryRestaurantListResponse {
+    ): QueryRestaurantListResponse {
         return queryRestaurantListService.execute(x, y, level, star)
+    }
+
+    @GetMapping("/lists/map")
+    fun queryRestaurantMap(
+        @RequestParam(value = "x")
+        x: Double,
+        @RequestParam(value = "y")
+        y: Double,
+        @RequestParam(value = "level")
+        level: Level,
+        @RequestParam(value = "star")
+        star: Int
+    ): QueryRestaurantMapListResponse {
+        return queryRestaurantMapService.execute(x, y, level, star)
     }
 }
