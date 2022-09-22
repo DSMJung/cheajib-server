@@ -50,6 +50,7 @@ class QueryRestaurantReviewService(
                     val comment = commentRepository.findByReview(review)
 
                     QueryReviewResponse(
+                        name = review.user.name,
                         reviewPoint = review.reviewPoint,
                         createAt = review.createAt,
                         content = review.content,
