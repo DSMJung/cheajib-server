@@ -19,8 +19,4 @@ class ReviewFacade(
     fun getAllReviewByRestaurant(restaurant: Restaurant): List<Review> {
         return reviewRepository.findAllByRestaurant(restaurant) ?: throw ReviewNotFoundException.EXCEPTION
     }
-
-    fun getReviewByRestaurant(restaurant: Restaurant): Review {
-        return reviewRepository.findByRestaurant(restaurant) ?: throw ReviewNotFoundException.EXCEPTION
-    }
 }

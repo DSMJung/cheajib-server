@@ -1,13 +1,9 @@
 package com.cheajib.cheajibserver.domain.restaurant.facade
 
-import com.cheajib.cheajibserver.domain.menu.domain.Menu
-import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
-import com.cheajib.cheajibserver.domain.menu.domain.MenuLevelId
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
 import com.cheajib.cheajibserver.domain.menu.exception.MenuNotFoundException
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
-import com.cheajib.cheajibserver.domain.menu.facade.MenuLevelFacade
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.exception.RestaurantNotFoundException
@@ -24,7 +20,6 @@ class RestaurantFacade(
     private val restaurantRepository: RestaurantRepository,
     private val menuRepository: MenuRepository,
     private val reviewRepository: ReviewRepository,
-    private val menuLevelFacade: MenuLevelFacade,
     private val menuFacade: MenuFacade,
     private val reviewFacade: ReviewFacade,
     private val menuLevelRepository: MenuLevelRepository
