@@ -19,4 +19,8 @@ class MenuFacade(
     fun getMenuByRestaurant(restaurant: Restaurant): Menu {
         return menuRepository.findTop1ByRestaurant(restaurant) ?: throw MenuNotFoundException.EXCEPTION
     }
+
+    fun getLevel(restaurant: Restaurant): Menu {
+        return menuRepository.findFirstByRestaurant(restaurant) ?: throw MenuNotFoundException.EXCEPTION
+    }
 }

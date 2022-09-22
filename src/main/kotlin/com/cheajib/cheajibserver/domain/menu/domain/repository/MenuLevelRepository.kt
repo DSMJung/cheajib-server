@@ -13,4 +13,6 @@ interface MenuLevelRepository : CrudRepository<MenuLevel, UUID> {
     fun findByMenu(menu: Menu): MenuLevel?
     fun findById(id: MenuLevelId): MenuLevel?
     fun findTop1ByMenu(menu: Menu): MenuLevel?
+
+    fun findFirstByMenu(menu: Menu): MenuLevel?
 }

@@ -1,6 +1,11 @@
 package com.cheajib.cheajibserver.domain.restaurant.facade
 
+import com.cheajib.cheajibserver.domain.menu.domain.Menu
+import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
+import com.cheajib.cheajibserver.domain.menu.domain.MenuLevelId
+import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
+import com.cheajib.cheajibserver.domain.menu.exception.MenuNotFoundException
 import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
 import com.cheajib.cheajibserver.domain.menu.facade.MenuLevelFacade
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
@@ -21,7 +26,8 @@ class RestaurantFacade(
     private val reviewRepository: ReviewRepository,
     private val menuLevelFacade: MenuLevelFacade,
     private val menuFacade: MenuFacade,
-    private val reviewFacade: ReviewFacade
+    private val reviewFacade: ReviewFacade,
+    private val menuLevelRepository: MenuLevelRepository
 ) {
     fun getRestaurantById(id: UUID): Restaurant {
         return restaurantRepository.findByIdOrNull(id) ?: throw RestaurantNotFoundException.EXCEPTION
@@ -68,10 +74,8 @@ class RestaurantFacade(
     }
 
     fun getMenuLevel(restaurant: Restaurant): Level {
-        if (menuRepository.existsByRestaurant(restaurant)) {
-            val menu = menuFacade.getMenuByRestaurant(restaurant)
-            return menuLevelFacade.getMenuLeveByTop1(menu).id.level
-        }
-        return Level.FLEXITARIAN
+        val menu = menuRepository.findByRestaurant(restaurant) ?: return Level.FLEXITARIAN
+        val menuLevel = menuLevelRepository.findTop1ByMenu(menu) ?: throw MenuNotFoundException.EXCEPTION
+        return menuLevel.id.level
     }
 }
