@@ -41,15 +41,15 @@ class RestaurantFacade(
     }
 
     fun getImageUrl(restaurant: Restaurant): String {
-        val menu = menuRepository.findByRestaurant(restaurant)
+        /*val menu = menuRepository.findByRestaurant(restaurant)
         if (menu != null) {
             return menu.menuImageUrl
-        }
+        }*/
         return DefaultImage.MENU_IMAGE
     }
 
     fun getStarPoint(restaurant: Restaurant): Double {
-        val reviewList = reviewRepository.findAllByRestaurant(restaurant)
+       /* val reviewList = reviewRepository.findAllByRestaurant(restaurant)
 
         if (reviewList != null) {
             var sum = 0
@@ -57,23 +57,23 @@ class RestaurantFacade(
                 sum += review.reviewPoint
             }
             return (sum / reviewList.size).toDouble()
-        }
+        }*/
         return 5.0
     }
 
     fun getMainMenu(restaurant: Restaurant): String {
-        val menu = menuRepository.findByRestaurantOrderById(restaurant)
+       /* val menu = menuRepository.findByRestaurant(restaurant)
         if (menu != null) {
             return menu.name
-        }
+        }*/
         return ""
     }
 
     fun getMenuLevel(restaurant: Restaurant): Level {
-        val menu = menuRepository.findByRestaurant(restaurant)
+       /* val menu = menuRepository.findByRestaurant(restaurant)
         if (menu != null) {
             return menuLevelFacade.getMenuLevelByMenu(menu).id.level
-        }
+        }*/
         return Level.FLEXITARIAN
     }
 }
