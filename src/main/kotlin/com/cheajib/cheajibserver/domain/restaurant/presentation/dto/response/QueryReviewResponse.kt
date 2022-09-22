@@ -6,6 +6,6 @@ data class QueryReviewResponse(
     val reviewPoint: Int,
     val content: String,
     val createAt: LocalDateTime,
-    val imageList: List<String>,
-    val reviewComment: QueryReviewCommentResponse
+    val imageList: List<String>?,
+    val reviewComment: QueryReviewCommentResponse?
 )

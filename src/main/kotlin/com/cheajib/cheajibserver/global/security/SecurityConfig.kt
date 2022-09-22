@@ -58,6 +58,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.DELETE, "/review").authenticated()
             .antMatchers(HttpMethod.GET, "/review/my-review/lists").authenticated()
             .antMatchers(HttpMethod.POST, "/review").authenticated()
+            .antMatchers(HttpMethod.GET, "/reviews/{restaurant-id}").permitAll()
 
             // owner
             .antMatchers(HttpMethod.POST, "/owner").authenticated()
