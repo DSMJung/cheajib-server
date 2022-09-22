@@ -24,7 +24,7 @@ class GlobalExceptionHandler {
         @ModelAttribute 어노테이션으로 받은 파라미터
         Valid로 binding error 발생시 발생
      */
-    @ExceptionHandler(BindException::class)
+    /*@ExceptionHandler(BindException::class)
     fun handleBindException(e: BindException): ResponseEntity<*>? {
         val errorMap: MutableMap<String, String?> = HashMap()
 
@@ -34,14 +34,14 @@ class GlobalExceptionHandler {
         return ResponseEntity<Map<String, String?>>(errorMap, HttpStatus.BAD_REQUEST)
     }
 
-    /*
+    *//*
         Valid로 binding error 발생시 발생
         @RequestBody 어노테이션으로 받은 파라미터
-     */
+     *//*
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleMethodArgumentNotValidException(): ResponseEntity<ErrorResponse<Unit>> {
         return handleException(CustomMethodArgumentNotValidException.EXCEPTION)
-    }
+    }*/
 
     /*
         데이터의 삽입/수정이 무결성 제약 조건을 위반할 때 발생하는 예외이다.

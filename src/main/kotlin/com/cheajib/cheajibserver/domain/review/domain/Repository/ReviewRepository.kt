@@ -12,5 +12,5 @@ interface ReviewRepository : CrudRepository<Review, UUID>, CustomReviewRepositor
 
     fun existsByRestaurant(restaurant: Restaurant): Boolean
 
-    fun findByRestaurant(restaurant: Restaurant): Review
+    fun findByRestaurant(restaurant: Restaurant): Review?
 }

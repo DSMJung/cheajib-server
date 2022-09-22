@@ -10,6 +10,6 @@ import java.util.UUID
 @Repository
 interface MenuLevelRepository : CrudRepository<MenuLevel, UUID> {
     fun findAllByMenuIdOrderByLevelCount(menuId: UUID): List<MenuLevel>
-    fun findByMenu(menu: Menu): MenuLevel
+    fun findByMenu(menu: Menu): MenuLevel?
     fun findById(id: MenuLevelId): MenuLevel?
 }

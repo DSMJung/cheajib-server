@@ -2,6 +2,8 @@ package com.cheajib.cheajibserver.domain.restaurant.facade
 
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
+import com.cheajib.cheajibserver.domain.menu.facade.MenuFacade
+import com.cheajib.cheajibserver.domain.menu.facade.MenuLevelFacade
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.exception.RestaurantNotFoundException
@@ -19,7 +21,9 @@ class RestaurantFacade(
     private val menuRepository: MenuRepository,
     private val menuLevelRepository: MenuLevelRepository,
     private val reviewFacade: ReviewFacade,
-    private val reviewRepository: ReviewRepository
+    private val reviewRepository: ReviewRepository,
+    private val menuFacade: MenuFacade,
+    private val menuLevelFacade: MenuLevelFacade
 ) {
     fun getRestaurantById(id: UUID): Restaurant {
         return restaurantRepository.findByIdOrNull(id) ?: throw RestaurantNotFoundException.EXCEPTION
@@ -37,17 +41,17 @@ class RestaurantFacade(
     }
 
     fun getImageUrl(restaurant: Restaurant): String {
-        if (menuRepository.existsByRestaurant(restaurant)) {
-            val mainMenu = menuRepository.findTop1ByRestaurant(restaurant)
-            return mainMenu.menuImageUrl
+        val menu = menuRepository.findByRestaurant(restaurant)
+        if (menu != null) {
+            return menu.menuImageUrl
         }
-        return DefaultImage.RESTAURANT_IMAGE
+        return DefaultImage.MENU_IMAGE
     }
 
     fun getStarPoint(restaurant: Restaurant): Double {
-        if (reviewRepository.existsByRestaurant(restaurant)) {
-            val reviewList = reviewFacade.getAllReviewByRestaurant(restaurant)
+        val reviewList = reviewRepository.findAllByRestaurant(restaurant)
 
+        if (reviewList != null) {
             var sum = 0
             for (review in reviewList) {
                 sum += review.reviewPoint
@@ -58,17 +62,17 @@ class RestaurantFacade(
     }
 
     fun getMainMenu(restaurant: Restaurant): String {
-        if (menuRepository.existsByRestaurant(restaurant)) {
-            val menu = menuRepository.findTop1ByRestaurant(restaurant)
+        val menu = menuRepository.findByRestaurantOrderById(restaurant)
+        if (menu != null) {
             return menu.name
         }
-        return "물"
+        return ""
     }
 
     fun getMenuLevel(restaurant: Restaurant): Level {
-        if (menuRepository.existsByRestaurant(restaurant)) {
-            val menu = menuRepository.findTop1ByRestaurant(restaurant)
-            return menuLevelRepository.findByMenu(menu).id.level
+        val menu = menuRepository.findByRestaurant(restaurant)
+        if (menu != null) {
+            return menuLevelFacade.getMenuLevelByMenu(menu).id.level
         }
         return Level.FLEXITARIAN
     }

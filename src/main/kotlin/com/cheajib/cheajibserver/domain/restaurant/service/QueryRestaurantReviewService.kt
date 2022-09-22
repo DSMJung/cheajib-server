@@ -8,7 +8,7 @@ import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.Que
 import com.cheajib.cheajibserver.domain.review.facade.ReviewFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import java.util.*
 
 @Service
 class QueryRestaurantReviewService(
@@ -34,19 +34,17 @@ class QueryRestaurantReviewService(
         return QueryRestaurantReviewResponse(
             averageStar = starAverage,
             starCount = starCount,
-            reviewList = restaurantRepository.queryReview(restaurant)
-                .map {
-                    QueryReviewResponse(
-                        reviewPoint = it.reviewPoint,
-                        content = it.content,
-                        createAt = it.createAt,
-                        imageList = it.imageList,
-                        reviewComment = QueryReviewCommentResponse(
-                            comment = it.reviewCommentVO.comment,
-                            createAt = it.reviewCommentVO.createAt
-                        )
+            reviewList = restaurantRepository.queryReview(restaurant)?.map {
+                QueryReviewResponse(
+                    reviewPoint = it.reviewPoint,
+                    content = it.content,
+                    createAt = it.createAt,
+                    imageList = it.imageList,
+                    reviewComment = QueryReviewCommentResponse(
+                        comment = it.reviewCommentVO.comment, createAt = it.reviewCommentVO.createAt
                     )
-                }.toList()
+                )
+            }
         )
     }
 }
