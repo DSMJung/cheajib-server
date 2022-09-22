@@ -13,7 +13,7 @@ class MenuLevel(
 
     @MapsId("id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = false, columnDefinition = "BINARY(16)")
     val menu: Menu,
 
     levelCount: Int

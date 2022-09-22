@@ -46,10 +46,10 @@ class GlobalExceptionHandler {
     /*
         데이터의 삽입/수정이 무결성 제약 조건을 위반할 때 발생하는 예외이다.
      */
-    @ExceptionHandler(DataIntegrityViolationException::class)
-    fun handleDataIntegrityViolationException(): ResponseEntity<ErrorResponse<Unit>> {
-        return handleException(CustomDataIntegrityViolationException.EXCEPTION)
-    }
+//    @ExceptionHandler(DataIntegrityViolationException::class)
+//    fun handleDataIntegrityViolationException(): ResponseEntity<ErrorResponse<Unit>> {
+//        return handleException(CustomDataIntegrityViolationException.EXCEPTION)
+//    }
 
     /*
         적합하지 않거나(illegal) 적절하지 못한(inappropriate) 인자를 메소드에 넘겨주었을 때 발생합니다.
