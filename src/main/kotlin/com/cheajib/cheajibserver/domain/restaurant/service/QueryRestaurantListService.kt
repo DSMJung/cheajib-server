@@ -2,14 +2,15 @@ package com.cheajib.cheajibserver.domain.restaurant.service
 
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
+import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
-import com.cheajib.cheajibserver.domain.restaurant.exception.RestaurantNotFoundException
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantListResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.RestaurantListResponse
 import com.cheajib.cheajibserver.domain.review.domain.Repository.ReviewRepository
 import com.cheajib.cheajibserver.domain.review.facade.ReviewFacade
 import com.cheajib.cheajibserver.domain.user.domain.type.Level
+import com.cheajib.cheajibserver.infrastructure.aws.defaultImage.DefaultImage
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -32,33 +33,18 @@ class QueryRestaurantListService(
     ): QueryRestaurantListResponse {
         val restaurantList = restaurantRepository.findAllRestaurant(x, y)
 
-        for (restaurant in restaurantList) {
-            var starPoint = 5.0
-            var mainMenu = ""
-
-            if (reviewRepository.existsByRestaurant(restaurant)) {
-                val review = reviewFacade.getReviewByRestaurant(restaurant)
-                val menu = menuRepository.findTop1ByRestaurant(restaurant)
-                mainMenu = menu.name
-                starPoint = review.reviewPoint / 5.0
-            }
-
-            if (!restaurantFacade.filter(restaurant, star, level)) {
-                continue
-            }
-
-            return QueryRestaurantListResponse(
+        return QueryRestaurantListResponse(
+            restaurantList = restaurantList.map {
                 RestaurantListResponse(
-                    id = restaurant.id,
-                    name = restaurant.name,
-                    address = restaurant.address,
-                    starPoint = starPoint,
-                    mainMenu = mainMenu,
-                    imageUrl = restaurant.imageUrl,
-                    isVerify = restaurant.isVerify
+                    id = it.id,
+                    name =  it.name,
+                    address =  it.address,
+                    starPoint = restaurantFacade.getStarPoint(it),
+                    mainMenu =  restaurantFacade.getMainMenu(it),
+                    imageUrl =  restaurantFacade.getImageUrl(it),
+                    isVerify = it.isVerify
                 )
-            )
-        }
-        return throw RestaurantNotFoundException.EXCEPTION
+            }
+        )
     }
 }
