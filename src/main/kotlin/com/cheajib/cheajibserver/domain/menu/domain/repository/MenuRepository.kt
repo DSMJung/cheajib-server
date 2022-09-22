@@ -15,4 +15,6 @@ interface MenuRepository : CrudRepository<Menu, UUID> {
     fun findByRestaurant(restaurant: Restaurant): Menu?
 
     fun existsByRestaurant(restaurant: Restaurant): Boolean
+
+    fun findTop1ByRestaurant(restaurant: Restaurant): Menu?
 }
