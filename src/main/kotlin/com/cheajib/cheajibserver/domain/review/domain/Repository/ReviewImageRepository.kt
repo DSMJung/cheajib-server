@@ -8,5 +8,5 @@ import java.util.UUID
 
 @Repository
 interface ReviewImageRepository : CrudRepository<ReviewImage, UUID> {
-    fun findAllByReview(review: Review): ReviewImage?
+    fun findAllByReview(review: Review): List<ReviewImage>?
 }

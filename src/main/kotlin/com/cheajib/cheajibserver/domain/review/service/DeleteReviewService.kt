@@ -6,7 +6,7 @@ import com.cheajib.cheajibserver.domain.review.facade.ReviewFacade
 import com.cheajib.cheajibserver.domain.review.facade.ReviewImageFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import java.util.*
 
 @Service
 class DeleteReviewService(
@@ -18,8 +18,8 @@ class DeleteReviewService(
     @Transactional
     fun execute(reviewId: UUID) {
         val review = reviewFacade.getReviewById(reviewId)
-        val reviewImage = reviewImageFacade.getReviewImageByReview(review)
-        reviewImageRepository.delete(reviewImage)
+        val reviewImage = reviewImageFacade.getAllReviewImageByReview(review)
+        reviewImageRepository.deleteAll(reviewImage)
         reviewRepository.delete(review)
     }
 }
