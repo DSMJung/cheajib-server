@@ -26,58 +26,14 @@ class RestaurantFacade(
     }
 
     fun filter(restaurant: Restaurant, star: Int, level: Level): Boolean {
-        var menuLevel = Level.FLEXITARIAN
-        var starPoint = 5.0
-
-        if (reviewRepository.existsByRestaurant(restaurant)) {
-            val reviewList = reviewFacade.getAllReviewByRestaurant(restaurant)
-            var sum = 0
-            for (review in reviewList) {
-                sum += review.reviewPoint
-            }
-            starPoint = (sum / reviewList.size).toDouble()
-        }
-
-        if (menuRepository.existsByRestaurant(restaurant)) {
-            val menu = menuRepository.findTop1ByRestaurant(restaurant)
-            menuLevel = menuLevelRepository.findByMenu(menu).id.level
-        }
+        val menuLevel = getMenuLevel(restaurant)
+        val starPoint = getStarPoint(restaurant)
 
         if (starPoint < star) {
             return false
         }
 
-        when {
-            level.name == Level.VEGAN.name ||
-                    menuLevel.name == Level.LACTO.name ||
-                    menuLevel.name == Level.LACTO_OVO.name ||
-                    menuLevel.name == Level.PESCO.name ||
-                    menuLevel.name == Level.POLLO.name ||
-                    menuLevel.name == Level.FLEXITARIAN.name -> {
-                return false
-            }
-            level.name == Level.LACTO.name ||
-                    menuLevel.name == Level.LACTO_OVO.name ||
-                    menuLevel.name == Level.PESCO.name ||
-                    menuLevel.name == Level.POLLO.name ||
-                    menuLevel.name == Level.FLEXITARIAN.name -> {
-                return false
-            }
-            level.name == Level.LACTO_OVO.name ||
-                    menuLevel.name == Level.PESCO.name ||
-                    menuLevel.name == Level.POLLO.name ||
-                    menuLevel.name == Level.FLEXITARIAN.name -> {
-                return false
-            }
-            level.name == Level.PESCO.name ||
-                    menuLevel.name == Level.POLLO.name ||
-                    menuLevel.name == Level.FLEXITARIAN.name -> {
-                return false
-            }
-            level.name == Level.POLLO.name || menuLevel.name == Level.FLEXITARIAN.name ->
-                return false
-        }
-        return true
+        return menuLevel <= level
     }
 
     fun getImageUrl(restaurant: Restaurant): String {

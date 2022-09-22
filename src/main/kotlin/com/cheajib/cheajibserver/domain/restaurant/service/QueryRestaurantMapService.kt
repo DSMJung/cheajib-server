@@ -25,6 +25,9 @@ class QueryRestaurantMapService(
 
         return QueryRestaurantMapListResponse(
             restaurantsList = restaurantList
+                .filter {
+                    restaurantFacade.filter(it, star, level)
+                }
                 .map {
                     RestaurantMapResponse(
                         id = it.id,
