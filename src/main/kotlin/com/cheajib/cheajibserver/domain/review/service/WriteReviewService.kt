@@ -36,15 +36,16 @@ class WriteReviewService(
             menuLevel?.plusLevelCount()
         }
 
-        val review = Review(
-            id = UUID.randomUUID(),
-            createAt = LocalDateTime.now(),
-            reviewPoint = request.reviewPoint,
-            content = request.content,
-            user = user,
-            restaurant = restaurant
+        val review = reviewRepository.save(
+            Review(
+                id = UUID.randomUUID(),
+                createAt = LocalDateTime.now(),
+                reviewPoint = request.reviewPoint,
+                content = request.content,
+                user = user,
+                restaurant = restaurant
+            )
         )
-        reviewRepository.save(review)
 
         for (image in request.imageUrl) {
             var i = 1
