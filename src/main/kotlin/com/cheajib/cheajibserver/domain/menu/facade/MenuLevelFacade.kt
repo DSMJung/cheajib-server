@@ -14,7 +14,7 @@ class MenuLevelFacade(
     private val menuLevelRepository: MenuLevelRepository
 ) {
 
-    fun getMenuLevelByMenu(menu: Menu): MenuLevel {
-        return menuLevelRepository.findByMenu(menu) ?: throw MenuNotFoundException.EXCEPTION
+    fun getMenuLeveByTop1(menu: Menu): MenuLevel {
+        return menuLevelRepository.findTop1ByMenu(menu) ?: throw MenuNotFoundException.EXCEPTION
     }
 }

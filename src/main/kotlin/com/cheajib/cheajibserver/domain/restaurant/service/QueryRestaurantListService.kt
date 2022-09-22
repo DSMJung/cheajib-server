@@ -1,5 +1,6 @@
 package com.cheajib.cheajibserver.domain.restaurant.service
 
+import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantListResponse
@@ -20,7 +21,7 @@ class QueryRestaurantListService(
         level: Level,
         star: Int
     ): QueryRestaurantListResponse {
-        val lists = restaurantRepository.findAllRestaurant(x, y)
+        val lists: List<Restaurant> = restaurantRepository.findAllRestaurant(x, y)
 
         return QueryRestaurantListResponse(
             restaurantList = lists.filter {

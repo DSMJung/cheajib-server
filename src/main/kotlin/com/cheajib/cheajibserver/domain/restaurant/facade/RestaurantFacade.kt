@@ -70,7 +70,7 @@ class RestaurantFacade(
     fun getMenuLevel(restaurant: Restaurant): Level {
         if (menuRepository.existsByRestaurant(restaurant)) {
             val menu = menuFacade.getMenuByRestaurant(restaurant)
-            return menuLevelFacade.getMenuLevelByMenu(menu).id.level
+            return menuLevelFacade.getMenuLeveByTop1(menu).id.level
         }
         return Level.FLEXITARIAN
     }
