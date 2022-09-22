@@ -16,7 +16,7 @@ class ReviewImage(
 
     @MapsId("id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id", nullable = false)
+    @JoinColumn(name = "review_id", nullable = false, columnDefinition = "BINARY(16)")
     val review: Review
 
 ) : Serializable

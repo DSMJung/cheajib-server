@@ -2,18 +2,19 @@ package com.cheajib.cheajibserver.domain.review.presentation.dto.request
 
 import com.cheajib.cheajibserver.domain.review.presentation.dto.response.MenuInfoElement
 import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class WriteReviewRequest(
 
-    var reviewPoint: Int,
+    @field:NotNull
+    val reviewPoint: Int,
 
-    @field: Size(max = 300)
-    @field: NotBlank
-    var content: String,
+    @field:Size(max = 300)
+    @field:NotBlank
+    val content: String,
 
-    @field: NotBlank
-    var imageUrl: List<String>,
+    val imageUrl: List<String>,
 
-    var menuList: List<MenuInfoElement>
+    val menuList: List<MenuInfoElement>
 )

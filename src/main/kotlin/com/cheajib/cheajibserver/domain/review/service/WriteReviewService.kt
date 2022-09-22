@@ -47,8 +47,8 @@ class WriteReviewService(
             )
         )
 
-        for (image in request.imageUrl) {
-            var i = 1
+        var i = 1
+        request.imageUrl.forEach { image ->
             val reviewImage = ReviewImage(
                 id = ReviewImageId(
                     sequence = i,

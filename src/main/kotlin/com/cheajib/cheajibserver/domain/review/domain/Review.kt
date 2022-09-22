@@ -38,7 +38,7 @@ class Review(
 ) : BaseTimeEntity() {
 
     @field:NotNull
-    @field:Length(max = 5)
+//    @field:Length(max = 5)
     var reviewPoint = reviewPoint
         protected set
 }
