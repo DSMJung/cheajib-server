@@ -4,9 +4,6 @@ enum class GlobalErrorCode(
     override val errorStatus: Int,
     override val errorMessage: String
 ) : ErrorProperty {
-
-    COMMENT_NOT_FOUND(404, "Comment Not Found"),
-
     METHOD_ARGUMENT_NOT_VALID(400, "Method Argument Not Valid"),
     CONSTRAINT_VIOLATION(400, "Constraint Violation"),
     DATA_INTEGRITY_VIOLATION(400, "DataIntegrity Violation"),
