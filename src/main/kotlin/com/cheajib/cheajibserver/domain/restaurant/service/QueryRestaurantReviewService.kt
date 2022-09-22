@@ -19,20 +19,26 @@ class QueryRestaurantReviewService(
     @Transactional(readOnly = true)
     fun execute(restaurantId: UUID): QueryRestaurantReviewResponse {
         val restaurant = restaurantFacade.getRestaurantById(restaurantId)
-        val review = reviewFacade.getReviewByRestaurant(restaurant)
-        val starAverage: Double = review.reviewPoint / 5.0
         val starCount = mutableListOf(0, 0, 0, 0, 0)
+        var reviewCount = 0
+        val review = reviewFacade.getAllReviewByRestaurant(restaurant)
+            .map { review ->
+                when (review.reviewPoint) {
+                    1 -> starCount.add(0, starCount[0] + 1)
+                    2 -> starCount.add(1, starCount[1] + 1)
+                    3 -> starCount.add(2, starCount[2] + 1)
+                    4 -> starCount.add(3, starCount[3] + 1)
+                    5 -> starCount.add(4, starCount[4] + 1)
+                }
+                reviewCount += 1
+                review.reviewPoint
+            }.reduce { total, num ->
+                total + num
+            }
 
-        when (review.reviewPoint) {
-            1 -> starCount.add(0, starCount[0] + 1)
-            2 -> starCount.add(1, starCount[1] + 1)
-            3 -> starCount.add(2, starCount[2] + 1)
-            4 -> starCount.add(3, starCount[3] + 1)
-            5 -> starCount.add(4, starCount[4] + 1)
-        }
 
         return QueryRestaurantReviewResponse(
-            averageStar = starAverage,
+            averageStar = (review / reviewCount).toDouble(),
             starCount = starCount,
             reviewList = restaurantRepository.queryReview(restaurant)?.map {
                 QueryReviewResponse(

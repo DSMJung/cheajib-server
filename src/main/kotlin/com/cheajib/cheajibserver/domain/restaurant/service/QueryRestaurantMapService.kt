@@ -20,7 +20,6 @@ class QueryRestaurantMapService(
         level: Level,
         star: Int
     ): QueryRestaurantMapListResponse {
-
         val restaurantList = restaurantRepository.findAllRestaurant(x, y)
 
         return QueryRestaurantMapListResponse(
