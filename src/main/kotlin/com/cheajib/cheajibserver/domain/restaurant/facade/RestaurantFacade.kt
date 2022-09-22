@@ -74,7 +74,7 @@ class RestaurantFacade(
     }
 
     fun getMenuLevel(restaurant: Restaurant): Level {
-        val menu = menuRepository.findFirstByRestaurant(restaurant) ?: return Level.LACTO
+        val menu = menuRepository.findFirstByRestaurant(restaurant) ?: return Level.FLEXITARIAN
         val menuLevel = menuLevelRepository.findFirstByMenuOrderByLevelCountDesc(menu) ?: throw MenuNotFoundException.EXCEPTION
         return menuLevel.id.level
     }
