@@ -1,14 +1,16 @@
 package com.cheajib.cheajibserver.domain.menu.service
 
+import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
+import com.cheajib.cheajibserver.domain.menu.exception.MenuNotFoundException
 import com.cheajib.cheajibserver.domain.menu.presentation.dto.response.MenuElement
 import com.cheajib.cheajibserver.domain.menu.presentation.dto.response.MenuListResponse
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import java.util.*
 
 @Service
 class QueryMenuListService(
@@ -29,6 +31,7 @@ class QueryMenuListService(
                         maxLevelCount = num
                         total + num
                     }
+                val menuLevel: MenuLevel = menuLevelRepository.findByMenu(menu) ?: throw MenuNotFoundException.EXCEPTION
 
                 MenuElement(
                     menuId = menu.id,
@@ -37,7 +40,8 @@ class QueryMenuListService(
                     price = menu.price,
                     menuImageUrl = menu.menuImageUrl,
                     average = getAverage(maxLevelCount, menuTotalCount),
-                    menuCount = menuTotalCount
+                    menuCount = menuTotalCount,
+                    level = menuLevel.id.level
                 )
             }
         return MenuListResponse(menuList)
