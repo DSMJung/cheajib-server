@@ -55,8 +55,6 @@ class GlobalExceptionHandler {
         적합하지 않거나(illegal) 적절하지 못한(inappropriate) 인자를 메소드에 넘겨주었을 때 발생합니다.
     */
 
-<<<<<<< HEAD
-=======
 /*    @ExceptionHandler(IllegalArgumentException::class)
     fun handleIllegalArgumentException(): ResponseEntity<ErrorResponse<Unit>> {
         return handleException(CustomIllegalArgumentException.EXCEPTION)
@@ -66,7 +64,7 @@ class GlobalExceptionHandler {
 //    fun handleIllegalArgumentException(): ResponseEntity<ErrorResponse<Unit>> {
 //        return handleException(CustomIllegalArgumentException.EXCEPTION)
 //    }
->>>>>>> main
+
 
     private fun handleException(e: GlobalException): ResponseEntity<ErrorResponse<Unit>> {
         val status = HttpStatus.valueOf(e.errorStatus)
