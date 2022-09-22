@@ -3,7 +3,7 @@ package com.cheajib.cheajibserver.domain.review.domain.Repository
 import com.cheajib.cheajibserver.domain.comment.domain.QComment.comment1
 import com.cheajib.cheajibserver.domain.restaurant.domain.QRestaurant.restaurant
 import com.cheajib.cheajibserver.domain.review.domain.QReview.review
-import com.cheajib.cheajibserver.domain.review.domain.QReviewImage
+import com.cheajib.cheajibserver.domain.review.domain.QReviewImage.reviewImage
 import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.MyReviewVO
 import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.QMyReviewVO
 import com.cheajib.cheajibserver.domain.review.domain.Repository.vo.QOwnerCommentVO
@@ -33,7 +33,7 @@ class CustomReviewRepositoryImpl(
             )
             .from(review)
             .leftJoin(review.restaurant, restaurant)
-            .leftJoin(review, comment1.review)
+            .leftJoin(comment1.review, review)
             .where(review.user.eq(user))
             .orderBy(review.createAt.desc())
             .fetch().toList()
@@ -41,8 +41,9 @@ class CustomReviewRepositoryImpl(
 
     private fun getImageList(): Expression<List<String>> {
         val imageList: List<String> = jpaQueryFactory
-            .select(QReviewImage.reviewImage.imageUrl)
-            .leftJoin(QReviewImage.reviewImage.review, review)
+            .select(reviewImage.imageUrl)
+            .from(reviewImage)
+            .leftJoin(reviewImage.review, review)
             .fetch()
             .toList()
         return Expressions.constant(imageList)

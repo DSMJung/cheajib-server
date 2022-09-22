@@ -9,6 +9,6 @@ data class MyReviewResponse(
     val reviewPoint: Int,
     val content: String,
     val createdAt: LocalDateTime,
-    val imageList: List<String>,
-    val ownerCommentResponse: OwnerCommentResponse
+    val imageList: List<String>?,
+    val ownerCommentResponse: OwnerCommentResponse?
 )

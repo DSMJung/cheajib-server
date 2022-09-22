@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class ReviewImageFacade(
     private val reviewImageRepository: ReviewImageRepository
 ) {
-    fun getReviewImageByReview(review: Review): ReviewImage {
+    fun getAllReviewImageByReview(review: Review): List<ReviewImage> {
         return reviewImageRepository.findAllByReview(review) ?: throw ReviewImageNotFoundException
     }
 }

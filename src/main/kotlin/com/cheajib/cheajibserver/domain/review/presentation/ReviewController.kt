@@ -1,6 +1,7 @@
 package com.cheajib.cheajibserver.domain.review.presentation
 
 import com.cheajib.cheajibserver.domain.review.presentation.dto.request.WriteReviewRequest
+import com.cheajib.cheajibserver.domain.review.presentation.dto.response.MyReviewListResponse
 import com.cheajib.cheajibserver.domain.review.service.DeleteReviewService
 import com.cheajib.cheajibserver.domain.review.service.QueryMyReviewService
 import com.cheajib.cheajibserver.domain.review.service.WriteReviewService
@@ -36,8 +37,8 @@ class ReviewController(
     }
 
     @GetMapping
-    fun queryMyReviewList() {
-        queryMyReviewService.execute()
+    fun queryMyReviewList(): MyReviewListResponse {
+        return queryMyReviewService.execute()
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
