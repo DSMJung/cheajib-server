@@ -1,7 +1,5 @@
 package com.cheajib.cheajibserver.domain.restaurant.service
 
-import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
-import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
 import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantMapListResponse
@@ -13,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class QueryRestaurantMapService(
     private val restaurantRepository: RestaurantRepository,
-    private val menuRepository: MenuRepository,
-    private val menuLevelRepository: MenuLevelRepository,
     private val restaurantFacade: RestaurantFacade
 ) {
     @Transactional(readOnly = true)
@@ -26,7 +22,7 @@ class QueryRestaurantMapService(
     ): QueryRestaurantMapListResponse {
 
         val restaurantList = restaurantRepository.findAllRestaurant(x, y)
-        
+
         return QueryRestaurantMapListResponse(
             restaurantsList = restaurantList
                 .map {
