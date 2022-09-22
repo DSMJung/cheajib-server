@@ -1,13 +1,12 @@
 package com.cheajib.cheajibserver.domain.menu.service
 
-import com.cheajib.cheajibserver.domain.menu.domain.MenuLevel
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuLevelRepository
 import com.cheajib.cheajibserver.domain.menu.domain.repository.MenuRepository
-import com.cheajib.cheajibserver.domain.menu.exception.MenuNotFoundException
 import com.cheajib.cheajibserver.domain.menu.presentation.dto.response.MenuElement
 import com.cheajib.cheajibserver.domain.menu.presentation.dto.response.MenuListResponse
 import com.cheajib.cheajibserver.domain.restaurant.domain.Restaurant
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
+import com.cheajib.cheajibserver.domain.user.domain.type.Level
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -21,6 +20,7 @@ class QueryMenuListService(
     @Transactional(readOnly = true)
     fun execute(restaurantId: UUID): MenuListResponse {
         val restaurant: Restaurant = restaurantFacade.getRestaurantById(restaurantId)
+        var findLevel: Level = Level.FLEXITARIAN
 
         val menuList: List<MenuElement>? = menuRepository.findAllByRestaurant(restaurant)
             ?.map { menu ->
@@ -31,7 +31,10 @@ class QueryMenuListService(
                         maxLevelCount = num
                         total + num
                     }
-                val menuLevel: MenuLevel = menuLevelRepository.findByMenu(menu) ?: throw MenuNotFoundException.EXCEPTION
+                menuLevelRepository.findAllByMenuIdOrderByLevelCount(menu.id)
+                    .map { level ->
+                        findLevel = level.id.level
+                    }
 
                 MenuElement(
                     menuId = menu.id,
@@ -41,7 +44,7 @@ class QueryMenuListService(
                     menuImageUrl = menu.menuImageUrl,
                     average = getAverage(maxLevelCount, menuTotalCount),
                     menuCount = menuTotalCount,
-                    level = menuLevel.id.level
+                    level = (findLevel)
                 )
             }
         return MenuListResponse(menuList)
