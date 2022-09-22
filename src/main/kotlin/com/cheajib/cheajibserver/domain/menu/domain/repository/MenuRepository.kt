@@ -10,11 +10,7 @@ import java.util.UUID
 interface MenuRepository : CrudRepository<Menu, UUID> {
     fun findAllByRestaurant(restaurant: Restaurant): MutableList<Menu>?
 
-    fun findByRestaurant(restaurant: Restaurant): Menu?
-
     fun findFirstByRestaurant(restaurant: Restaurant): Menu?
 
     fun existsByRestaurant(restaurant: Restaurant): Boolean
-
-    fun findTop0ByRestaurant(restaurant: Restaurant): Menu?
 }
