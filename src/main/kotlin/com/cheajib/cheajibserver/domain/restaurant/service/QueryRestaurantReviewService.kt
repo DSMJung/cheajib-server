@@ -1,7 +1,6 @@
 package com.cheajib.cheajibserver.domain.restaurant.service
 
 import com.cheajib.cheajibserver.domain.comment.domain.repository.CommentRepository
-import com.cheajib.cheajibserver.domain.restaurant.domain.repository.RestaurantRepository
 import com.cheajib.cheajibserver.domain.restaurant.facade.RestaurantFacade
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryRestaurantReviewResponse
 import com.cheajib.cheajibserver.domain.restaurant.presentation.dto.response.QueryReviewCommentResponse
@@ -15,7 +14,6 @@ import java.util.*
 
 @Service
 class QueryRestaurantReviewService(
-    private val restaurantRepository: RestaurantRepository,
     private val restaurantFacade: RestaurantFacade,
     private val reviewFacade: ReviewFacade,
     private val reviewRepository: ReviewRepository,
