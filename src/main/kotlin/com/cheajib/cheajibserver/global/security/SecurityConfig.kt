@@ -29,46 +29,9 @@ class SecurityConfig(
         http
             .authorizeRequests()
 
-//            // users
-//            .antMatchers(HttpMethod.PATCH, "/users/level").authenticated()
-//            .antMatchers(HttpMethod.POST, "/users").permitAll()
-//            .antMatchers(HttpMethod.POST, "/users/token").permitAll()
-//            .antMatchers(HttpMethod.GET, "/auth").permitAll()
-//            .antMatchers(HttpMethod.GET, "/users/level").authenticated()
-//            .antMatchers(HttpMethod.GET, "/users").authenticated()
-//
-//            // restaurants
-//            .antMatchers(HttpMethod.GET, "/restaurants/{restaurant-id}").authenticated()
-//            .antMatchers(HttpMethod.GET, "/restaurants/details/{restaurant-id}").authenticated()
-//            .antMatchers(HttpMethod.GET, "/restaurants/menu").authenticated()
-//            .antMatchers(HttpMethod.GET, "/restaurants/reviews/{restaurant-id}").authenticated()
-//            .antMatchers(HttpMethod.GET, "/restaurants/lists/map").authenticated()
-//            .antMatchers(HttpMethod.GET, "/restaurants/lists").authenticated()
-//            .antMatchers(HttpMethod.GET, "/restaurants/info/{restaurant-id}").authenticated()
-//
-//            // menu
-//            .antMatchers(HttpMethod.POST, "/menu/{restaurant-id}").authenticated()
-//            .antMatchers(HttpMethod.DELETE, "/menu/{menu-id}").authenticated()
-//            .antMatchers(HttpMethod.GET, "/menu/lists").authenticated()
-//
-//            // images
-//            .antMatchers(HttpMethod.POST, "/images").permitAll()
-//
-//            // review
-//            .antMatchers(HttpMethod.DELETE, "/review").authenticated()
-//            .antMatchers(HttpMethod.GET, "/review/my-review/lists").authenticated()
-//            .antMatchers(HttpMethod.POST, "/review").authenticated()
-//            .antMatchers(HttpMethod.GET, "/reviews/{restaurant-id}").permitAll()
-//
-//            // owner
-//            .antMatchers(HttpMethod.POST, "/owner").authenticated()
-//            .antMatchers(HttpMethod.PATCH, "/owner").authenticated()
-//            .antMatchers(HttpMethod.GET, "/owner/{owner-id}").authenticated()
-//
-//            // comments
-//            .antMatchers(HttpMethod.POST, "/comments").authenticated()
+            .antMatchers(HttpMethod.GET, "/auth").permitAll()
 
-            .anyRequest().permitAll()
+            .anyRequest().authenticated()
             .and().apply(FilterConfig(jwtTokenResolver, jwtTokenProvider, objectMapper))
 
         return http.build()
