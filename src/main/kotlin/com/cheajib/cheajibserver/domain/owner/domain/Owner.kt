@@ -60,7 +60,7 @@ class Owner(
         protected set
 
     @field:NotNull
-    @ColumnDefault("'0'")
+    @field:ColumnDefault("0")
     var isVerify = isVerify
         protected set
 
