@@ -11,7 +11,7 @@ import java.util.UUID
 interface RestaurantRepository : CrudRepository<Restaurant, UUID>, CustomRestaurantRepository {
     @Query("SELECT * FROM tbl_restaurant\n" +
             "  HAVING (6371*acos(cos(radians(:x))*cos(radians(tbl_restaurant.latitude))*cos(radians(tbl_restaurant.longitude)\n" +
-            "  -radians(:y))+sin(radians(:x))*sin(radians(tbl_restaurant.latitude)))) <=1\n" +
+            "  -radians(:y))+sin(radians(:x))*sin(radians(tbl_restaurant.latitude)))) <=3\n" +
             "  ORDER BY (6371*acos(cos(radians(:x))*cos(radians(tbl_restaurant.latitude))*cos(radians(tbl_restaurant.longitude)\n" +
             "  -radians(:y))+sin(radians(:x))*sin(radians(tbl_restaurant.latitude))));", nativeQuery = true)
     fun findAllRestaurant(@Param(value = "x") x: Double, @Param(value = "y") y:Double) :List<Restaurant>
